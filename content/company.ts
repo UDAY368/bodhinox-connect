@@ -35,7 +35,7 @@ export const company: Company = {
   operator: "Bodhinox",
   country: "India",
   countryCode: "IN",
-  email: "uday@bodhinox.com",
+  email: "udaykumar@bodhinox.com",
   // TODO(owner): fill these in from the registration documents.
   legalName: "",
   address: undefined,

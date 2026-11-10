@@ -1,6 +1,6 @@
 # Bodhinox Connect: website master prompt and design plan
 
-Status: **LOCKED (2026-11-10).** Domain **https://bodhinoxconnect.in**, support email **uday@bodhinox.com**. The website is built inside `bodhinox_Connect/` only; that folder is the Vercel project root. Sections 12 to 15 (Meta standards, SEO, design revisions, build rules) override anything earlier that disagrees.
+Status: **LOCKED (2026-11-10).** Domain **https://bodhinoxconnect.in**, support email **udaykumar@bodhinox.com**. The website is built inside `bodhinox_Connect/` only; that folder is the Vercel project root. Sections 12 to 15 (Meta standards, SEO, design revisions, build rules) override anything earlier that disagrees.
 
 ---
 
@@ -276,7 +276,7 @@ The pricing page must say: *"WhatsApp conversation charges are billed by Meta at
 
 Meta reviewers open the website to confirm three things: the business is real, the app does what the review says, and the legal URLs entered in the app dashboard work. The site must meet every item below.
 
-- **Business identity.** Show the business name in every page footer, on About and on Contact. The legal entity name, registered address and phone come from `content/company.ts`, and each renders only when filled in. **Never invent a legal name, address, CIN or GSTIN.** Defaults: brand "Bodhinox Connect", operator "Bodhinox", country India, email uday@bodhinox.com.
+- **Business identity.** Show the business name in every page footer, on About and on Contact. The legal entity name, registered address and phone come from `content/company.ts`, and each renders only when filled in. **Never invent a legal name, address, CIN or GSTIN.** Defaults: brand "Bodhinox Connect", operator "Bodhinox", country India, email udaykumar@bodhinox.com.
 - **Contact page.** Show the support email as visible text, plus the address and phone when set, and a contact form.
 - **Required public legal pages.** Link them from every footer, at stable URLs for the Meta app dashboard:
   - `/privacy`: the privacy policy, including WhatsApp and Meta data and data from connected accounts
@@ -304,7 +304,7 @@ Meta reviewers open the website to confirm three things: the business is real, t
   - The footer notice reads: "WhatsApp and Meta are trademarks of Meta Platforms, Inc. Bodhinox Connect is not affiliated with or endorsed by Meta."
   - No partner badges and no partnership claims.
 - **Cookies.** No tracking or analytics cookies by default, and the privacy policy says so; no cookie banner is needed. If analytics are added later, add consent first.
-- **Legal text.** Adapt it from the app's published policies (`../content/legal/privacy.md`, `terms.md`, `data-deletion.md`), using the product name "Bodhinox Connect", the domain bodhinoxconnect.in and the email uday@bodhinox.com. Keep the substance and never weaken a commitment.
+- **Legal text.** Adapt it from the app's published policies (`../content/legal/privacy.md`, `terms.md`, `data-deletion.md`), using the product name "Bodhinox Connect", the domain bodhinoxconnect.in and the email udaykumar@bodhinox.com. Keep the substance and never weaken a commitment.
 - **Configured links.** "Start free" and "Sign in" use `NEXT_PUBLIC_APP_URL`, defaulting to `https://app.bodhinoxconnect.in`, until the owner points it at the real app.
 
 ## 13. SEO and Google ranking

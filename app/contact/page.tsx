@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Contact us and book a demo",
   description:
-    "Book a demo of Bodhinox Connect or ask about plans, setup and WhatsApp onboarding. Write to uday@bodhinox.com or use the contact form on this page.",
+    "Book a demo of Bodhinox Connect or ask about plans, setup and WhatsApp onboarding. Write to udaykumar@bodhinox.com or use the contact form on this page.",
   path: "/contact",
 });
 

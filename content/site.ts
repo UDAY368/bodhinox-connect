@@ -18,7 +18,7 @@ export const site = {
    */
   url: "https://www.bodhinoxconnect.in",
   domain: "bodhinoxconnect.in",
-  email: "uday@bodhinox.com",
+  email: "udaykumar@bodhinox.com",
   tagline: "Every customer conversation, connected.",
   description:
     "Bodhinox Connect brings your WhatsApp inbox, campaigns, automation, AI agent, store and payments into one simple platform.",
@@ -32,7 +32,7 @@ export const site = {
 
   /** Contact form POST endpoint (for example Formspree). Empty means fall back to mailto:. */
   contactEndpoint: process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "",
-  mailto: "mailto:uday@bodhinox.com",
+  mailto: "mailto:udaykumar@bodhinox.com",
 
   /** Verification codes. Each meta tag renders only when its value is set. */
   facebookDomainVerification: process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION || "",
