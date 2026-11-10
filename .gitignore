@@ -9,3 +9,7 @@ next-env.d.ts
 .env
 npm-debug.log*
 .claude/
+
+.vercel
+.env*
+!.env.example
