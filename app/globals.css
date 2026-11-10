@@ -1,0 +1,347 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Bodhinox Connect design tokens
+   Light is the default on :root. Dark follows the system unless the visitor
+   picked light with the toggle, or is forced with [data-theme="dark"].
+   Components use the Tailwind names exposed in @theme below (bg-bg,
+   text-ink, border-line, bg-copper ...). Never hard-code hex values and
+   never use the dark: variant; the tokens switch by themselves.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f8f7f4;            /* paper */
+  --surface: #ffffff;       /* cards, windows */
+  --sunken: #f1eee8;        /* quiet bands, table stripes */
+  --ink: #1d1b17;           /* headings, body */
+  --muted: #6b6458;         /* secondary text, 5.4:1 on bg */
+  --line: #e7e1d6;          /* hairline borders */
+  --line-strong: #d6cebf;   /* inputs, emphasised dividers */
+  --copper: #a65328;        /* primary actions, key figures, logo, 5.0:1 on bg */
+  --copper-hover: #8c421f;
+  --copper-soft: #a6532812; /* tints */
+  --copper-ink: #8c421f;    /* copper text on copper tints */
+  --field: #8f8676;         /* form control borders, 3:1 on surface */
+  --on-copper: #ffffff;     /* text on copper, 5.4:1 */
+  --success: #2f7a4f;
+  --danger: #b3261e;
+
+  /* Product mock-up surfaces, matched to the app */
+  --chat-bg: #f2eee7;
+  --bubble-in: #ffffff;
+  --bubble-out: #f7e9df;
+  --shadow-soft: 0 1px 2px rgb(29 27 23 / 0.04), 0 8px 24px -12px rgb(29 27 23 / 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #171715;
+    --surface: #1f1e1b;
+    --sunken: #1b1a18;
+    --ink: #f3eee7;
+    --muted: #a39b8e;
+    --line: #34302a;
+    --line-strong: #474239;
+    --copper: #d0794a;
+    --copper-hover: #e08a5c;
+    --copper-soft: #d0794a1f;
+    --copper-ink: #e08a5c;
+    --field: #7a7366;
+    --on-copper: #171715;
+    --success: #5cb784;
+    --danger: #f08a80;
+    --chat-bg: #1b1a17;
+    --bubble-in: #262420;
+    --bubble-out: #3a2a20;
+    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #171715;
+  --surface: #1f1e1b;
+  --sunken: #1b1a18;
+  --ink: #f3eee7;
+  --muted: #a39b8e;
+  --line: #34302a;
+  --line-strong: #474239;
+  --copper: #d0794a;
+  --copper-hover: #e08a5c;
+  --copper-soft: #d0794a1f;
+  --copper-ink: #e08a5c;
+  --field: #7a7366;
+  --on-copper: #171715;
+  --success: #5cb784;
+  --danger: #f08a80;
+  --chat-bg: #1b1a17;
+  --bubble-in: #262420;
+  --bubble-out: #3a2a20;
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+}
+
+/* Tokens exposed to Tailwind. `inline` keeps the var() so the theme switch works. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-copper: var(--copper);
+  --color-copper-hover: var(--copper-hover);
+  --color-copper-soft: var(--copper-soft);
+  --color-copper-ink: var(--copper-ink);
+  --color-field: var(--field);
+  --color-on-copper: var(--on-copper);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-chat: var(--chat-bg);
+  --color-bubble-in: var(--bubble-in);
+  --color-bubble-out: var(--bubble-out);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --shadow-soft: var(--shadow-soft);
+}
+
+@theme {
+  /* Type scale. Each step carries its own line height and tracking. */
+  --text-hero: clamp(2.5rem, 1.75rem + 3.2vw, 4rem); /* 40/46 mobile, 64/72 desktop */
+  --text-hero--line-height: 1.125;
+  --text-hero--letter-spacing: -0.035em;
+  --text-h2: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); /* 44/52 desktop */
+  --text-h2--line-height: 1.18;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: 1.375rem; /* 22/30 */
+  --text-h3--line-height: 1.364;
+  --text-h3--letter-spacing: -0.015em;
+  --text-lead: 1.1875rem; /* 19/30 */
+  --text-lead--line-height: 1.58;
+  --text-body: 1.0625rem; /* 17/28 */
+  --text-body--line-height: 1.647;
+  --text-small: 0.875rem; /* 14/22 */
+  --text-small--line-height: 1.571;
+  --text-micro: 0.75rem; /* 12/16, mono labels */
+  --text-micro--line-height: 1.333;
+
+  --radius-card: 1rem; /* 16px cards */
+  --radius-control: 0.625rem;
+
+  --container-site: 75rem; /* 1200px content width */
+  --container-reading: 42rem; /* long-form reading width */
+
+  --animate-msg-in: msg-in 360ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-tick-read: tick-read 240ms ease-out both;
+
+  @keyframes msg-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes tick-read {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem; /* anchors clear the sticky header */
+  }
+
+  /* Theme toggle icon: shows the theme you would switch to. */
+  .theme-icon-sun {
+    display: none;
+  }
+  :root[data-theme="dark"] .theme-icon-sun {
+    display: inline;
+  }
+  :root[data-theme="dark"] .theme-icon-moon {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-icon-sun {
+      display: inline;
+    }
+    :root:not([data-theme="light"]) .theme-icon-moon {
+      display: none;
+    }
+  }
+
+  /* Pages with the sticky feature sub-nav need room for both bars. */
+  html:has(nav[aria-label="Features"]) {
+    scroll-padding-top: 8rem;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--copper);
+    color: var(--on-copper);
+  }
+
+  /* One focus ring everywhere: visible on cream, white and dark. */
+  :focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Skip link: off screen until focused. */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -10rem;
+    z-index: 100;
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-control);
+    background: var(--ink);
+    color: var(--bg);
+    font-weight: 600;
+  }
+  .skip-link:focus {
+    top: 0.75rem;
+  }
+
+  /* Long-form text for legal pages and guides. Wrap with <Prose>. */
+  .prose-bx {
+    max-width: var(--container-reading);
+    color: var(--ink);
+    font-size: var(--text-body);
+    line-height: 1.75;
+  }
+  .prose-bx > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-bx h2 {
+    margin-top: 2.4em;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+  .prose-bx h3 {
+    margin-top: 1.8em;
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+  }
+  .prose-bx h2 + *,
+  .prose-bx h3 + * {
+    margin-top: 0.6em;
+  }
+  .prose-bx a {
+    color: var(--copper);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .prose-bx a:hover {
+    color: var(--copper-hover);
+  }
+  .prose-bx strong {
+    font-weight: 600;
+  }
+  .prose-bx ul,
+  .prose-bx ol {
+    padding-left: 1.25em;
+  }
+  .prose-bx ul {
+    list-style: disc;
+  }
+  .prose-bx ol {
+    list-style: decimal;
+  }
+  .prose-bx li + li {
+    margin-top: 0.4em;
+  }
+  .prose-bx li::marker {
+    color: var(--muted);
+  }
+  .prose-bx blockquote {
+    border-left: 2px solid var(--line-strong);
+    padding-left: 1em;
+    color: var(--muted);
+  }
+  .prose-bx code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--sunken);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+  .prose-bx hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 2.5em 0;
+  }
+  .prose-bx table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-small);
+  }
+  .prose-bx th,
+  .prose-bx td {
+    border-bottom: 1px solid var(--line);
+    padding: 0.6em 0.8em;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-bx th {
+    font-weight: 600;
+  }
+}
+
+/* Motion: one orchestrated hero moment, 200ms hovers, nothing else.
+   With reduced motion every element shows its final state at once. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
