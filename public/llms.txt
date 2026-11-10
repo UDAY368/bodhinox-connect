@@ -1,0 +1,38 @@
+# Bodhinox Connect
+
+> Bodhinox Connect is a WhatsApp CRM and marketing platform for Indian businesses. It brings your WhatsApp inbox, campaigns, automation, AI agent, store and payments into one simple platform, built on the official WhatsApp Business Platform (Cloud API). Plans are priced in INR, before 18% GST.
+
+Bodhinox Connect is operated by Bodhinox, India. It is not affiliated with or endorsed by Meta. WhatsApp and Meta are trademarks of Meta Platforms, Inc.
+
+## Product
+
+- [Home](https://www.bodhinoxconnect.in): what Bodhinox Connect does, in one page
+- [All features](https://www.bodhinoxconnect.in/features): every part of the product
+- [Shared team inbox](https://www.bodhinoxconnect.in/features/team-inbox): every WhatsApp chat from every number in one inbox, with assignment, notes and bot handover
+- [Campaigns and broadcasts](https://www.bodhinoxconnect.in/features/campaigns): send approved templates to the right customers and track delivery and reads
+- [Flows and automation](https://www.bodhinoxconnect.in/features/automation): visual chat flows and automations on events, keywords and schedules
+- [AI agent](https://www.bodhinoxconnect.in/features/ai-agent): answers customers from your own knowledge base and hands sensitive chats to a person
+- [Store and payments](https://www.bodhinoxconnect.in/features/commerce): products in chat, payment by UPI, card or cash on delivery through Razorpay, shipping with tracking
+- [CRM, analytics and platform](https://www.bodhinoxconnect.in/features/crm-analytics): contact timelines, deal pipelines and reports
+- [Pricing](https://www.bodhinoxconnect.in/pricing): Free, Basic, Pro and Enterprise plans in INR
+- [Solutions by industry](https://www.bodhinoxconnect.in/solutions): retail and D2C, clinics, education, real estate, services, restaurants
+- [WhatsApp Business Platform](https://www.bodhinoxconnect.in/whatsapp-business-platform): how Bodhinox Connect connects to Meta and what permissions it uses
+
+## Guides
+
+- [WhatsApp Business API in India: a complete guide](https://www.bodhinoxconnect.in/guides/whatsapp-business-api-india)
+- [How to run WhatsApp marketing campaigns customers welcome](https://www.bodhinoxconnect.in/guides/whatsapp-marketing-campaigns)
+- [WhatsApp chatbots and AI agents for small businesses](https://www.bodhinoxconnect.in/guides/whatsapp-chatbots-ai-agents)
+
+## Company
+
+- [About](https://www.bodhinoxconnect.in/about)
+- [Contact](https://www.bodhinoxconnect.in/contact): uday@bodhinox.com
+- [Sitemap](https://www.bodhinoxconnect.in/sitemap)
+
+## Optional
+
+- [Privacy policy](https://www.bodhinoxconnect.in/privacy)
+- [Terms of service](https://www.bodhinoxconnect.in/terms)
+- [Data deletion](https://www.bodhinoxconnect.in/data-deletion)
+- [Acceptable use and messaging policy](https://www.bodhinoxconnect.in/acceptable-use)

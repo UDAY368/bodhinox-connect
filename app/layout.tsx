@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { themeInitScript } from "@/components/layout/theme-script";
 import { site } from "@/content/site";
 import { fontVariables } from "@/lib/fonts";
-import { JsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { defaultRobots, JsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const defaultTitle = "WhatsApp CRM and Business API for India | Bodhinox Connect";
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: { default: defaultTitle, template: `%s | ${site.name}` },
   description: defaultDescription,
   applicationName: site.name,
+  robots: defaultRobots,
   openGraph: {
     type: "website",
     siteName: site.name,

@@ -1,6 +1,6 @@
 # Bodhinox Connect website
 
-Marketing site for **Bodhinox Connect** at https://bodhinoxconnect.in. A self-contained Next.js 16 (App Router) + TypeScript + Tailwind v4 project. Nothing here imports from the main app in the parent folder.
+Marketing site for **Bodhinox Connect** at https://www.bodhinoxconnect.in. A self-contained Next.js 16 (App Router) + TypeScript + Tailwind v4 project. Nothing here imports from the main app in the parent folder.
 
 The locked spec is [`docs/MASTER_PROMPT.md`](docs/MASTER_PROMPT.md). Sections 12 to 15 override earlier sections.
 
@@ -14,6 +14,7 @@ npm run typecheck  # tsc --noEmit
 npm run lint       # eslint (eslint-config-next)
 npm run build      # must pass before every merge
 npm start          # serve the production build
+npm run indexnow   # ping Bing/Yandex with every URL in the live sitemap
 ```
 
 Node 24 and npm, the same as the app.
@@ -36,7 +37,22 @@ They are read once in `content/site.ts`. Pages never read `process.env` directly
 1. Import the repository in Vercel.
 2. Leave **Root Directory** as the repository root (`./`).
 3. Framework preset: Next.js. Build command and output stay at their defaults.
-4. Add the environment variables above as needed, then add the domain `bodhinoxconnect.in` (and `www` redirecting to it).
+4. Add the environment variables above as needed, then add both domains: `www.bodhinoxconnect.in` (the canonical address) and `bodhinoxconnect.in`.
+   `next.config.ts` 308-redirects the bare domain to `https://www.bodhinoxconnect.in`, keeping the path. In Vercel's Domains settings,
+   either leave the bare domain with no redirect or redirect it to `www`. **Never redirect `www` to the bare domain**: that loops with the rule in `next.config.ts`.
+
+## SEO
+
+- **Canonical host:** `https://www.bodhinoxconnect.in`, set once as `site.url` in `content/site.ts`. Canonicals, hreflang (`en-IN` and `x-default`), `og:url`, the sitemap, robots.txt and JSON-LD all derive from it.
+- **Other hosts:** the bare domain 308-redirects to `www`. Every `*.vercel.app` host gets `X-Robots-Tag: noindex`, so preview and alias URLs never compete with the real site.
+- **Sitemaps:** `/sitemap.xml` (from `app/sitemap.ts`) lists every indexable route in `routes` (`content/nav.ts`) with its last-modified date. `/sitemap` is the human-readable version, linked from the footer.
+- **Dates:** `PAGE_DATES` in `content/seo.ts` is the one source for `<lastmod>`, the guides' "Updated" line and Article JSON-LD, and the legal pages' "Last updated" line. Bump a page's date only when its copy really changes. A new route needs an entry there, or the build fails.
+- **Structured data:** `lib/seo.ts` builds Organization, WebSite, SoftwareApplication (INR offers per plan, only once `PRICES_CONFIRMED` in `content/pricing.ts` is true), FAQPage (only where the FAQ is visible), BreadcrumbList (inner pages, via `Breadcrumbs`) and Article (guides). No ratings or reviews: we have none to show.
+- **Expected Search Console warning:** the Software App report flags SoftwareApplication on Home and `/pricing` for a missing `aggregateRating` / `review`. That is expected and does not affect indexing or ranking. Leave it until there are real, verifiable reviews; never add invented ratings to clear it.
+- **HSTS:** sent without `preload`, because Next.js headers do not reach the bare-domain redirect. Only add `preload` after HSTS is set on the bare domain in Vercel and every subdomain (including `app.`) serves HTTPS.
+- **AI crawlers:** `public/llms.txt` is a short summary of the site with links to the key pages. Keep it in step with the pages.
+- **Google:** in Search Console, add the `https://www.bodhinoxconnect.in` property (or a Domain property), set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` if you verify by HTML tag, and submit `https://www.bodhinoxconnect.in/sitemap.xml`.
+- **IndexNow (Bing, Yandex):** after a deploy that changes content, run `npm run indexnow`. `scripts/indexnow.mjs` reads the live sitemap and POSTs every URL to `https://api.indexnow.org/indexnow`. The key file is `public/cc9ff792834ebbce854df86a6d0957f3.txt`; if you rotate the key, rename that file and update `KEY` in the script.
 
 `next.config.ts` pins `turbopack.root` and `outputFileTracingRoot` to this folder, because the parent repository has its own lockfile.
 
@@ -51,12 +67,15 @@ app/                    routes; every route folder has page.tsx and opengraph-im
   layout.tsx            fonts, metadata, verification tags, JSON-LD, skip link, header, footer
   globals.css           design tokens (light + dark), type scale, prose, focus, reduced motion
   sitemap.ts robots.ts manifest.ts icon.svg apple-icon.tsx logo.png/route.tsx
+  sitemap/page.tsx      the human-readable sitemap at /sitemap
+public/                 brand SVGs, llms.txt, the IndexNow key file
+scripts/indexnow.mjs    IndexNow submission (npm run indexnow)
 components/
   brand/                Logo, LogoMark, mark paths
   layout/               Header, Footer, MobileMenu, ThemeToggle, NavLink, PagePlaceholder
   ui/                   Container, Section, Eyebrow, Button, Badge, Prose, Breadcrumbs
   mockups/              DeviceFrame, WindowFrame, ChatThread, MessageBubble, Ticks, TemplateCard, StatRow, InboxList
-content/                all copy and data: site, company, nav, features, pricing, faqs, industries, guides
+content/                all copy and data: site, company, nav, seo (page dates), features, pricing, faqs, industries, guides
 lib/                    seo.ts (metadata + JSON-LD), og.tsx (OG image renderer), fonts.ts
 public/brand/           logo.svg, logo-dark.svg, mark.svg, favicon.svg
 ```

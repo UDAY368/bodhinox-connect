@@ -12,8 +12,11 @@ const appUrl = trimSlash(process.env.NEXT_PUBLIC_APP_URL || "https://app.bodhino
 export const site = {
   name: "Bodhinox Connect",
   shortName: "Bodhinox",
-  /** Canonical origin, no trailing slash. Used for metadataBase, sitemap and JSON-LD. */
-  url: "https://bodhinoxconnect.in",
+  /**
+   * Canonical origin, no trailing slash. Used for metadataBase, canonicals, the
+   * sitemap and JSON-LD. The bare domain 308-redirects here (next.config.ts).
+   */
+  url: "https://www.bodhinoxconnect.in",
   domain: "bodhinoxconnect.in",
   email: "uday@bodhinox.com",
   tagline: "Every customer conversation, connected.",
@@ -35,8 +38,6 @@ export const site = {
   facebookDomainVerification: process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION || "",
   googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
 
-  /** Fixed content date for the sitemap. Bump it when copy changes meaningfully. */
-  lastUpdated: "2026-11-10",
 } as const;
 
 export function absoluteUrl(path = "/"): string {

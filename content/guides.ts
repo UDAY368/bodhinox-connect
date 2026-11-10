@@ -3,6 +3,8 @@
  * lives in each page file; keep title and description here in sync with it.
  */
 
+import { PAGE_DATES } from "./seo";
+
 export type Guide = {
   slug: string;
   /** Article headline (H1). */
@@ -13,6 +15,7 @@ export type Guide = {
   description: string;
   href: `/guides/${string}`;
   datePublished: string;
+  /** From PAGE_DATES in content/seo.ts, so the page, Article JSON-LD and sitemap agree. */
   dateModified: string;
   readingMinutes: number;
   keywords: string[];
@@ -27,7 +30,7 @@ export const guides: Guide[] = [
       "What the WhatsApp Business API is, what it costs in India, how to get approved and connect a number, and how it differs from the free WhatsApp Business app.",
     href: "/guides/whatsapp-business-api-india",
     datePublished: "2026-11-10",
-    dateModified: "2026-11-10",
+    dateModified: PAGE_DATES["/guides/whatsapp-business-api-india"],
     readingMinutes: 7,
     keywords: ["WhatsApp Business API India", "WhatsApp Business Platform", "Cloud API"],
   },
@@ -39,7 +42,7 @@ export const guides: Guide[] = [
       "A practical playbook for WhatsApp marketing: getting opt-in, writing templates Meta approves, segmenting, timing sends and following up without spamming.",
     href: "/guides/whatsapp-marketing-campaigns",
     datePublished: "2026-11-10",
-    dateModified: "2026-11-10",
+    dateModified: PAGE_DATES["/guides/whatsapp-marketing-campaigns"],
     readingMinutes: 6,
     keywords: ["WhatsApp marketing software", "WhatsApp broadcast", "WhatsApp templates"],
   },
@@ -51,7 +54,7 @@ export const guides: Guide[] = [
       "When to use a WhatsApp chatbot flow, when an AI agent helps, and how to set both up safely for a small business, with handoff to a person when it matters.",
     href: "/guides/whatsapp-chatbots-ai-agents",
     datePublished: "2026-11-10",
-    dateModified: "2026-11-10",
+    dateModified: PAGE_DATES["/guides/whatsapp-chatbots-ai-agents"],
     readingMinutes: 6,
     keywords: ["WhatsApp chatbot", "WhatsApp AI agent", "small business automation"],
   },

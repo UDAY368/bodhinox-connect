@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ContactDetails, OperatorSentence, SupportEmail } from "@/components/legal/LegalBits";
-import { LEGAL_UPDATED, LegalPage, type LegalSection } from "@/components/legal/LegalPage";
+import { LegalPage, type LegalSection } from "@/components/legal/LegalPage";
 import { legalLinks } from "@/content/nav";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
@@ -372,7 +372,6 @@ export default function Page() {
       title="Privacy policy"
       crumb="Privacy policy"
       path={legalLinks.privacy}
-      updated={LEGAL_UPDATED}
       sections={sections}
       intro={
         <>

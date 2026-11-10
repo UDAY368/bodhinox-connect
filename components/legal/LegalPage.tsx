@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Prose } from "@/components/ui/Prose";
 import { legalLinks } from "@/content/nav";
+import { pageDate, type DatedPath } from "@/content/seo";
 
 export type LegalSection = {
   /** Anchor id, used by the table of contents. Keep stable: Meta reviewers and customers may link to it. */
@@ -17,14 +18,11 @@ type LegalPageProps = {
   title: string;
   /** Short name for the breadcrumb trail. */
   crumb: string;
-  path: string;
-  /** ISO date, e.g. "2026-11-10". */
-  updated: string;
+  /** Route path. Its "Last updated" date comes from PAGE_DATES in content/seo.ts. */
+  path: DatedPath;
   intro: ReactNode;
   sections: LegalSection[];
 };
-
-export const LEGAL_UPDATED = "2026-11-10";
 
 const related = [
   { href: legalLinks.privacy, label: "Privacy policy" },
@@ -44,7 +42,8 @@ function formatDate(iso: string): string {
  * date, a table of contents of anchor links and the text in Prose style.
  * Everything is static HTML.
  */
-export function LegalPage({ title, crumb, path, updated, intro, sections }: LegalPageProps) {
+export function LegalPage({ title, crumb, path, intro, sections }: LegalPageProps) {
+  const updated = pageDate(path);
   const others = related.filter((r) => r.href !== path);
   return (
     <Container className="py-12 md:py-20">

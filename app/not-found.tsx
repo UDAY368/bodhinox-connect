@@ -6,6 +6,8 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Page not found | Bodhinox Connect" },
+  // Replaces the layout default so the page carries one robots meta, not two.
+  robots: { index: false, follow: true },
 };
 
 const links = [

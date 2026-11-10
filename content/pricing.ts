@@ -5,6 +5,13 @@
  * owner confirms them.
  */
 
+/**
+ * Set to true once the owner confirms the prices above. Until then the
+ * SoftwareApplication JSON-LD carries no Offer prices, so search engines
+ * never index a price that may change.
+ */
+export const PRICES_CONFIRMED = false;
+
 export type PlanId = "free" | "basic" | "pro" | "enterprise";
 
 export type Plan = {

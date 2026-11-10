@@ -1,6 +1,7 @@
 import { features } from "./features";
 import { guides } from "./guides";
 import { industries } from "./industries";
+import type { DatedPath } from "./seo";
 
 /**
  * Navigation and the route registry. The sitemap is built from `routes`,
@@ -49,6 +50,7 @@ export const footerNav: FooterColumn[] = [
       { label: "Terms of service", href: "/terms" },
       { label: "Data deletion", href: "/data-deletion" },
       { label: "Acceptable use", href: "/acceptable-use" },
+      { label: "Sitemap", href: "/sitemap" },
     ],
   },
 ];
@@ -61,26 +63,59 @@ export const legalLinks = {
   acceptableUse: "/acceptable-use",
 } as const;
 
+export type RouteSection = "Main pages" | "Features" | "Guides" | "Company" | "Legal";
+
 export type RouteEntry = {
-  path: string;
+  path: DatedPath;
+  /** Link text on the HTML sitemap (/sitemap). */
+  label: string;
+  section: RouteSection;
   changeFrequency: "weekly" | "monthly" | "yearly";
   priority: number;
 };
 
-/** Every public route (sections 4, 12 and 13). Drives app/sitemap.ts. */
+/**
+ * Every indexable route. Drives app/sitemap.ts (sitemap.xml) and the HTML
+ * sitemap at /sitemap. Each path needs a date in PAGE_DATES (content/seo.ts).
+ */
 export const routes: RouteEntry[] = [
-  { path: "/", changeFrequency: "weekly", priority: 1 },
-  { path: "/features", changeFrequency: "monthly", priority: 0.9 },
-  ...features.map((f) => ({ path: f.href, changeFrequency: "monthly" as const, priority: 0.8 })),
-  { path: "/pricing", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/solutions", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/whatsapp-business-platform", changeFrequency: "monthly", priority: 0.7 },
-  { path: "/guides", changeFrequency: "weekly", priority: 0.7 },
-  ...guides.map((g) => ({ path: g.href, changeFrequency: "monthly" as const, priority: 0.7 })),
-  { path: "/about", changeFrequency: "yearly", priority: 0.6 },
-  { path: "/contact", changeFrequency: "yearly", priority: 0.6 },
-  { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
-  { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
-  { path: "/data-deletion", changeFrequency: "yearly", priority: 0.3 },
-  { path: "/acceptable-use", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/", label: "Home", section: "Main pages", changeFrequency: "weekly", priority: 1 },
+  { path: "/pricing", label: "Pricing", section: "Main pages", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/solutions", label: "Solutions by industry", section: "Main pages", changeFrequency: "monthly", priority: 0.7 },
+  {
+    path: "/whatsapp-business-platform",
+    label: "WhatsApp Business Platform",
+    section: "Main pages",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  { path: "/features", label: "All features", section: "Features", changeFrequency: "monthly", priority: 0.8 },
+  ...features.map((f) => ({
+    path: f.href as DatedPath,
+    label: f.shortTitle,
+    section: "Features" as const,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  })),
+  { path: "/guides", label: "All guides", section: "Guides", changeFrequency: "weekly", priority: 0.8 },
+  ...guides.map((g) => ({
+    path: g.href as DatedPath,
+    label: g.title,
+    section: "Guides" as const,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  })),
+  { path: "/about", label: "About", section: "Company", changeFrequency: "yearly", priority: 0.5 },
+  { path: "/contact", label: "Contact", section: "Company", changeFrequency: "yearly", priority: 0.5 },
+  { path: "/sitemap", label: "Sitemap", section: "Company", changeFrequency: "monthly", priority: 0.3 },
+  { path: "/privacy", label: "Privacy policy", section: "Legal", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/terms", label: "Terms of service", section: "Legal", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/data-deletion", label: "Data deletion", section: "Legal", changeFrequency: "yearly", priority: 0.3 },
+  {
+    path: "/acceptable-use",
+    label: "Acceptable use and messaging policy",
+    section: "Legal",
+    changeFrequency: "yearly",
+    priority: 0.3,
+  },
 ];

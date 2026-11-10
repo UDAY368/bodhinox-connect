@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { ContactDetails, SupportEmail } from "@/components/legal/LegalBits";
-import { LEGAL_UPDATED, LegalPage, type LegalSection } from "@/components/legal/LegalPage";
+import { LegalPage, type LegalSection } from "@/components/legal/LegalPage";
 import { legalLinks } from "@/content/nav";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
@@ -315,7 +315,6 @@ export default function Page() {
       title="Acceptable use and messaging policy"
       crumb="Acceptable use"
       path={legalLinks.acceptableUse}
-      updated={LEGAL_UPDATED}
       sections={sections}
       intro={
         <p>

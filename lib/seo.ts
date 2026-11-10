@@ -2,7 +2,7 @@ import { createElement } from "react";
 import type { Metadata } from "next";
 import { company } from "@/content/company";
 import type { Faq } from "@/content/faqs";
-import { plans } from "@/content/pricing";
+import { PRICES_CONFIRMED, plans } from "@/content/pricing";
 import { absoluteUrl, site } from "@/content/site";
 
 /* --------------------------------------------------------------------------
@@ -45,7 +45,7 @@ export function pageMetadata(input: PageMetaInput): Metadata {
   return {
     title: { absolute: fullTitle },
     description: input.description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: { "en-IN": url, "x-default": url } },
     openGraph: {
       type: input.type ?? "website",
       url,
@@ -65,6 +65,27 @@ export function pageMetadata(input: PageMetaInput): Metadata {
     ...(input.noIndex ? { robots: { index: false, follow: true } } : {}),
   };
 }
+
+/** Absolute URL of a route's opengraph-image.tsx output (the sitemap and Article JSON-LD use it). */
+export function ogImageUrl(path: string): string {
+  return absoluteUrl(path === "/" ? "/opengraph-image" : `${path}/opengraph-image`);
+}
+
+/** Site-wide robots default: index everything and allow large previews. */
+export const defaultRobots: Metadata["robots"] = {
+  index: true,
+  follow: true,
+  "max-image-preview": "large",
+  "max-snippet": -1,
+  "max-video-preview": -1,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
 
 /* --------------------------------------------------------------------------
    JSON-LD
@@ -118,6 +139,7 @@ export function organizationJsonLd() {
         email: site.email,
         ...(company.phone ? { telephone: company.phone } : {}),
         areaServed: company.countryCode,
+        // Add "hi" here only once Hindi support is actually offered.
         availableLanguage: ["en"],
       },
     ],
@@ -136,7 +158,10 @@ export function websiteJsonLd() {
   };
 }
 
-/** SoftwareApplication with one INR offer per priced plan. Use on Home and Pricing. */
+/**
+ * SoftwareApplication, with one INR offer per priced plan once PRICES_CONFIRMED.
+ * Use on Home and Pricing. Never add aggregateRating or review without real reviews.
+ */
 export function softwareApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -147,23 +172,28 @@ export function softwareApplicationJsonLd() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     publisher: { "@id": ORG_ID },
-    offers: plans
-      .filter((p) => p.monthly !== null)
-      .map((p) => ({
-        "@type": "Offer",
-        name: `${p.name} plan`,
+    ...(PRICES_CONFIRMED ? { offers: offersFromPlans() } : {}),
+  };
+}
+
+function offersFromPlans() {
+  return plans
+    .filter((p) => p.monthly !== null)
+    .map((p) => ({
+      "@type": "Offer",
+      name: `${p.name} plan`,
+      price: String(p.monthly),
+      priceCurrency: "INR",
+      url: absoluteUrl("/pricing"),
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
         price: String(p.monthly),
         priceCurrency: "INR",
-        url: absoluteUrl("/pricing"),
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: String(p.monthly),
-          priceCurrency: "INR",
-          unitText: "MONTH",
-          valueAddedTaxIncluded: false,
-        },
-      })),
-  };
+        unitCode: "MON",
+        unitText: "MONTH",
+        valueAddedTaxIncluded: false,
+      },
+    }));
 }
 
 /** FAQPage from the same array the page renders. */
@@ -213,7 +243,7 @@ export function articleJsonLd(a: ArticleInput) {
     description: a.description,
     url,
     mainEntityOfPage: url,
-    image: absoluteUrl(`${a.path}/opengraph-image`),
+    image: ogImageUrl(a.path),
     datePublished: a.datePublished,
     dateModified: a.dateModified ?? a.datePublished,
     inLanguage: site.language,

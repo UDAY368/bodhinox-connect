@@ -45,13 +45,16 @@ export function Hero() {
     <section aria-labelledby="hero-title" className="pt-10 pb-16 md:pt-16 md:pb-24">
       <Container className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
-          <Eyebrow>WhatsApp CRM and marketing platform for Indian businesses</Eyebrow>
-          <h1 id="hero-title" className="mt-4 max-w-[14ch] text-hero">
-            Every customer conversation, connected.
+          {/* One H1: the category phrase (what searchers type) plus the tagline. */}
+          <h1 id="hero-title">
+            <Eyebrow as="span" className="block">
+              WhatsApp CRM and marketing platform for Indian businesses
+            </Eyebrow>{" "}
+            <span className="mt-4 block max-w-[14ch] text-hero">Every customer conversation, connected.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lead text-muted">
-            Run your WhatsApp inbox, campaigns, automation, AI agent and store in one place, and turn chats into
-            sales.
+            {site.name} is a WhatsApp CRM and marketing platform for Indian businesses. Run your inbox, campaigns,
+            automation, AI agent and store in one place, and turn chats into sales.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href={site.signupUrl} size="lg" iconRight={<ArrowRight size={18} aria-hidden />}>
