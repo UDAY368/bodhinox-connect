@@ -18,7 +18,7 @@ export function SectionHeading({ id, eyebrow, title, intro, className }: Section
       <h2 id={id} className={cx("text-h2", eyebrow && "mt-3")}>
         {title}
       </h2>
-      {intro ? <p className="mt-4 text-lead text-muted">{intro}</p> : null}
+      {intro ? <p className="mt-4 text-lead text-muted-foreground">{intro}</p> : null}
     </div>
   );
 }

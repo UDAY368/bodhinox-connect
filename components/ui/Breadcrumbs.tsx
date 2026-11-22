@@ -16,19 +16,19 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   const all: Crumb[] = [{ name: "Home", path: "/" }, ...items];
   return (
     <>
-      <nav aria-label="Breadcrumb" className={cx("font-mono text-micro text-muted", className)}>
+      <nav aria-label="Breadcrumb" className={cx("text-small text-muted-foreground", className)}>
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {all.map((c, i) => {
             const last = i === all.length - 1;
             return (
               <li key={c.path} className="flex items-center gap-2">
                 {last ? (
-                  <span aria-current="page" className="text-ink">
+                  <span aria-current="page" className="text-foreground">
                     {c.name}
                   </span>
                 ) : (
                   <>
-                    <Link href={c.path} className="underline-offset-4 hover:text-ink hover:underline">
+                    <Link href={c.path} className="underline-offset-4 hover:text-foreground hover:underline">
                       {c.name}
                     </Link>
                     <span aria-hidden>/</span>

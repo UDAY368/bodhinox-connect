@@ -10,12 +10,28 @@ import type { DatedPath } from "./seo";
 
 export type NavLink = { label: string; href: string };
 
-/** Primary header navigation (master prompt section 4). */
+/** Primary header navigation. "Product" and "Resources" open menus (components/layout/MegaMenu.tsx). */
 export const headerNav: NavLink[] = [
-  { label: "Features", href: "/features" },
   { label: "Solutions", href: "/solutions" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Contact", href: "/contact" },
+  { label: "Developers", href: "/developers" },
+];
+
+/** Platform pages: the Product menu's bottom strip and the footer. */
+export const platformNav: (NavLink & { description: string })[] = [
+  { label: "Integrations", href: "/integrations", description: "Shopify, WooCommerce, Razorpay, Shiprocket" },
+  { label: "Developers", href: "/developers", description: "Public API and signed webhooks" },
+  { label: "Security", href: "/security", description: "Isolation, roles, 2FA, audit log" },
+  { label: "WhatsApp Business Platform", href: "/whatsapp-business-platform", description: "Built on Meta's official Cloud API" },
+];
+
+/** The Resources menu. */
+export const resourcesNav: (NavLink & { description: string })[] = [
+  { label: "Guides", href: "/guides", description: "WhatsApp Business API, campaigns and chatbots" },
+  { label: "WhatsApp Business Platform", href: "/whatsapp-business-platform", description: "How we use the official API" },
+  { label: "Security", href: "/security", description: "How we protect your data" },
+  { label: "About", href: "/about", description: "Who builds Bodhinox Connect" },
+  { label: "Contact", href: "/contact", description: "Book a demo or ask a question" },
 ];
 
 export type FooterColumn = { title: string; links: NavLink[] };
@@ -27,20 +43,23 @@ export const footerNav: FooterColumn[] = [
       { label: "All features", href: "/features" },
       ...features.map((f) => ({ label: f.shortTitle, href: f.href })),
       { label: "Pricing", href: "/pricing" },
-      { label: "WhatsApp Business Platform", href: "/whatsapp-business-platform" },
     ],
+  },
+  {
+    title: "Platform",
+    links: platformNav.map(({ label, href }) => ({ label, href })),
   },
   {
     title: "Solutions",
     links: industries.map((i) => ({ label: i.name, href: `/solutions#${i.slug}` })),
   },
   {
-    title: "Company",
+    title: "Resources",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
       { label: "Guides", href: "/guides" },
       ...guides.map((g) => ({ label: g.seoTitle, href: g.href })),
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
@@ -63,7 +82,7 @@ export const legalLinks = {
   acceptableUse: "/acceptable-use",
 } as const;
 
-export type RouteSection = "Main pages" | "Features" | "Guides" | "Company" | "Legal";
+export type RouteSection = "Main pages" | "Features" | "Platform" | "Guides" | "Company" | "Legal";
 
 export type RouteEntry = {
   path: DatedPath;
@@ -97,6 +116,9 @@ export const routes: RouteEntry[] = [
     changeFrequency: "monthly" as const,
     priority: 0.8,
   })),
+  { path: "/integrations", label: "Integrations", section: "Platform", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/developers", label: "Developers: API and webhooks", section: "Platform", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/security", label: "Security and privacy", section: "Platform", changeFrequency: "yearly", priority: 0.6 },
   { path: "/guides", label: "All guides", section: "Guides", changeFrequency: "weekly", priority: 0.8 },
   ...guides.map((g) => ({
     path: g.href as DatedPath,

@@ -71,8 +71,8 @@ type ContactFormProps = {
 };
 
 const inputClass =
-  "mt-2 block w-full rounded-control border bg-surface px-3.5 py-2.5 text-body text-ink placeholder:text-muted " +
-  "transition-colors duration-200 focus:border-copper";
+  "mt-2 block w-full rounded-control border bg-card px-3.5 py-2.5 text-body text-foreground placeholder:text-muted-foreground " +
+  "transition-colors duration-200 focus:border-primary";
 
 export function ContactForm({ endpoint, email }: ContactFormProps) {
   const uid = useId();
@@ -145,12 +145,12 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
 
   const fieldError = (name: FieldName) =>
     errors[name] ? (
-      <p id={id(`${name}-error`)} className="mt-1.5 text-small text-danger">
+      <p id={id(`${name}-error`)} className="mt-1.5 text-small text-destructive">
         {errors[name]}
       </p>
     ) : null;
 
-  const borderFor = (name: FieldName) => (errors[name] ? "border-danger" : "border-field");
+  const borderFor = (name: FieldName) => (errors[name] ? "border-destructive" : "border-input");
 
   return (
     <div>
@@ -159,16 +159,16 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
           ref={summaryRef}
           tabIndex={-1}
           role="alert"
-          className="mb-8 rounded-control border border-danger px-4 py-3"
+          className="mb-8 rounded-control border border-destructive px-4 py-3"
           aria-labelledby={id("summary-title")}
         >
-          <p id={id("summary-title")} className="font-semibold text-danger">
+          <p id={id("summary-title")} className="font-semibold text-destructive">
             {errorList.length === 1 ? "Please fix 1 field." : `Please fix ${errorList.length} fields.`}
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-small">
             {errorList.map((name) => (
               <li key={name}>
-                <a href={`#${id(name)}`} className="text-ink underline underline-offset-4">
+                <a href={`#${id(name)}`} className="text-foreground underline underline-offset-4">
                   {errors[name]}
                 </a>
               </li>
@@ -178,14 +178,14 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
       ) : null}
 
       <form noValidate onSubmit={onSubmit} aria-describedby={id("required-note")}>
-        <p id={id("required-note")} className="text-small text-muted">
+        <p id={id("required-note")} className="text-small text-muted-foreground">
           Fields marked <span aria-hidden>*</span>
           <span className="sr-only">with an asterisk</span> are required.
         </p>
 
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <div>
-            <label htmlFor={id("name")} className="text-small font-semibold text-ink">
+            <label htmlFor={id("name")} className="text-small font-semibold text-foreground">
               Your name <span aria-hidden>*</span>
             </label>
             <input
@@ -205,7 +205,7 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
           </div>
 
           <div>
-            <label htmlFor={id("email")} className="text-small font-semibold text-ink">
+            <label htmlFor={id("email")} className="text-small font-semibold text-foreground">
               Work email <span aria-hidden>*</span>
             </label>
             <input
@@ -226,10 +226,10 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
           </div>
 
           <div>
-            <label htmlFor={id("phone")} className="text-small font-semibold text-ink">
-              Phone <span className="font-normal text-muted">(optional)</span>
+            <label htmlFor={id("phone")} className="text-small font-semibold text-foreground">
+              Phone <span className="font-normal text-muted-foreground">(optional)</span>
             </label>
-            <p id={id("phone-hint")} className="mt-0.5 text-small text-muted">
+            <p id={id("phone-hint")} className="mt-0.5 text-small text-muted-foreground">
               Include the country code, for example +91.
             </p>
             <input
@@ -248,10 +248,10 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
           </div>
 
           <div>
-            <label htmlFor={id("company")} className="text-small font-semibold text-ink">
+            <label htmlFor={id("company")} className="text-small font-semibold text-foreground">
               Company <span aria-hidden>*</span>
             </label>
-            <p id={id("company-hint")} className="mt-0.5 text-small text-muted">
+            <p id={id("company-hint")} className="mt-0.5 text-small text-muted-foreground">
               Your business or brand name.
             </p>
             <input
@@ -271,10 +271,10 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
           </div>
 
           <div className="sm:col-span-2">
-            <label htmlFor={id("teamSize")} className="text-small font-semibold text-ink">
+            <label htmlFor={id("teamSize")} className="text-small font-semibold text-foreground">
               Team size <span aria-hidden>*</span>
             </label>
-            <p id={id("teamSize-hint")} className="mt-0.5 text-small text-muted">
+            <p id={id("teamSize-hint")} className="mt-0.5 text-small text-muted-foreground">
               How many people will reply to customers.
             </p>
             <select
@@ -299,10 +299,10 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
           </div>
 
           <div className="sm:col-span-2">
-            <label htmlFor={id("message")} className="text-small font-semibold text-ink">
+            <label htmlFor={id("message")} className="text-small font-semibold text-foreground">
               What would you like to see or ask? <span aria-hidden>*</span>
             </label>
-            <p id={id("message-hint")} className="mt-0.5 text-small text-muted">
+            <p id={id("message-hint")} className="mt-0.5 text-small text-muted-foreground">
               For example: your industry, how many chats you get a day, or the feature you care about most.
             </p>
             <textarea
@@ -339,11 +339,11 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
                 aria-describedby={describedBy("consent")}
                 checked={fields.consent}
                 onChange={(e) => update("consent", e.target.checked)}
-                className="mt-1 size-5 shrink-0 accent-copper"
+                className="mt-1 size-5 shrink-0 accent-primary"
               />
-              <label htmlFor={id("consent")} className="text-small text-ink">
+              <label htmlFor={id("consent")} className="text-small text-foreground">
                 I agree that Bodhinox may use these details to reply to my request, as set out in the{" "}
-                <Link href="/privacy" className="text-copper underline underline-offset-4 hover:text-copper-hover">
+                <Link href="/privacy" className="text-primary underline underline-offset-4 hover:text-primary-hover">
                   privacy policy
                 </Link>
                 . <span aria-hidden>*</span>
@@ -362,20 +362,20 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
             {status.kind === "sending" ? "Sending" : endpoint ? "Request a demo" : "Prepare my email"}
           </button>
           {!endpoint ? (
-            <p className="text-small text-muted">This opens a ready-to-send email in your own email app.</p>
+            <p className="text-small text-muted-foreground">This opens a ready-to-send email in your own email app.</p>
           ) : null}
         </div>
       </form>
 
       <div aria-live="polite">
         {status.kind === "sent" || status.kind === "failed" || status.kind === "mailto" ? (
-          <div ref={resultRef} tabIndex={-1} className="mt-8 rounded-control border border-line-strong bg-surface px-5 py-4">
+          <div ref={resultRef} tabIndex={-1} className="mt-8 rounded-control border border-input bg-card px-5 py-4">
             {status.kind === "sent" ? (
               <>
                 <p className="font-semibold text-success">We have your request.</p>
-                <p className="mt-1 text-small text-ink">
+                <p className="mt-1 text-small text-foreground">
                   We will reply to the email address you gave. To add anything, write to{" "}
-                  <a href={`mailto:${email}`} className="text-copper underline underline-offset-4">
+                  <a href={`mailto:${email}`} className="text-primary underline underline-offset-4">
                     {email}
                   </a>
                   .
@@ -384,24 +384,24 @@ export function ContactForm({ endpoint, email }: ContactFormProps) {
             ) : null}
             {status.kind === "failed" ? (
               <>
-                <p className="font-semibold text-danger">Your request did not go through.</p>
-                <p className="mt-1 text-small text-ink">
+                <p className="font-semibold text-destructive">Your request did not go through.</p>
+                <p className="mt-1 text-small text-foreground">
                   Nothing was sent. You can send the same details by email instead.
                 </p>
                 <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
                   <a href={status.href} className={buttonClasses({ variant: "secondary", size: "md" })}>
                     Open it in my email app
                   </a>
-                  <span className="text-small text-muted">
-                    or write to <span className="select-all text-ink">{email}</span>
+                  <span className="text-small text-muted-foreground">
+                    or write to <span className="select-all text-foreground">{email}</span>
                   </span>
                 </p>
               </>
             ) : null}
             {status.kind === "mailto" ? (
               <>
-                <p className="font-semibold text-ink">Your email is ready. It has not been sent yet.</p>
-                <p className="mt-1 text-small text-ink">
+                <p className="font-semibold text-foreground">Your email is ready. It has not been sent yet.</p>
+                <p className="mt-1 text-small text-foreground">
                   Open it in your email app, check it and press send. If the link does nothing, copy your details into
                   an email to <span className="select-all font-semibold">{email}</span>.
                 </p>

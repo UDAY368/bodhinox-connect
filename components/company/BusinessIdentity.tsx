@@ -23,7 +23,7 @@ export function BusinessIdentity({ className }: { className?: string }) {
           {
             label: "Phone",
             value: (
-              <a href={`tel:${company.phone}`} className="text-copper underline underline-offset-4 hover:text-copper-hover">
+              <a href={`tel:${company.phone}`} className="text-primary underline underline-offset-4 hover:text-primary-hover">
                 {company.phone}
               </a>
             ),
@@ -33,7 +33,7 @@ export function BusinessIdentity({ className }: { className?: string }) {
     {
       label: "Email",
       value: (
-        <a href={site.mailto} className="text-copper underline underline-offset-4 select-all hover:text-copper-hover">
+        <a href={site.mailto} className="text-primary underline underline-offset-4 select-all hover:text-primary-hover">
           {site.email}
         </a>
       ),
@@ -42,11 +42,11 @@ export function BusinessIdentity({ className }: { className?: string }) {
   ];
 
   return (
-    <dl className={cx("divide-y divide-line border-y border-line", className)}>
+    <dl className={cx("divide-y divide-border border-y border-border", className)}>
       {rows.map((row) => (
         <div key={row.label} className="grid gap-1 py-3.5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-6">
-          <dt className="font-mono text-micro tracking-[0.08em] text-muted uppercase sm:pt-1">{row.label}</dt>
-          <dd className="break-words text-body text-ink">{row.value}</dd>
+          <dt className="text-micro tracking-[0.08em] text-muted-foreground uppercase sm:pt-1">{row.label}</dt>
+          <dd className="break-words text-body text-foreground">{row.value}</dd>
         </div>
       ))}
     </dl>

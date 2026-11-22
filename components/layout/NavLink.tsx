@@ -15,7 +15,7 @@ export function NavLink({ href, children, className = "", onClick }: NavLinkProp
       href={href}
       onClick={onClick}
       aria-current={active ? "page" : undefined}
-      className={`${className} ${active ? "font-semibold text-ink" : "text-muted hover:text-ink"}`}
+      className={`${className} ${active ? "font-semibold text-foreground" : "text-muted-foreground hover:text-foreground"}`}
     >
       {children}
     </Link>

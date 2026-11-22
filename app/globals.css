@@ -1,144 +1,256 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   Bodhinox Connect design tokens
+   Bodhinox Connect design tokens, ported from the CRM
+   (BODHINOX_CHAT/src/app/globals.css, light mode + "blue" accent).
    Light is the default on :root. Dark follows the system unless the visitor
    picked light with the toggle, or is forced with [data-theme="dark"].
-   Components use the Tailwind names exposed in @theme below (bg-bg,
-   text-ink, border-line, bg-copper ...). Never hard-code hex values and
-   never use the dark: variant; the tokens switch by themselves.
+   Components use the Tailwind names exposed in @theme below (bg-background,
+   bg-card, text-foreground, text-muted-foreground, border-border,
+   bg-primary ...). Never hard-code hex values and never use the dark:
+   variant; the tokens switch by themselves. Orange belongs to the logo only.
    ========================================================================== */
 
 :root {
   color-scheme: light;
 
-  --bg: #f8f7f4;            /* paper */
-  --surface: #ffffff;       /* cards, windows */
-  --sunken: #f1eee8;        /* quiet bands, table stripes */
-  --ink: #1d1b17;           /* headings, body */
-  --muted: #6b6458;         /* secondary text, 5.4:1 on bg */
-  --line: #e7e1d6;          /* hairline borders */
-  --line-strong: #d6cebf;   /* inputs, emphasised dividers */
-  --copper: #a65328;        /* primary actions, key figures, logo, 5.0:1 on bg */
-  --copper-hover: #8c421f;
-  --copper-soft: #a6532812; /* tints */
-  --copper-ink: #8c421f;    /* copper text on copper tints */
-  --field: #8f8676;         /* form control borders, 3:1 on surface */
-  --on-copper: #ffffff;     /* text on copper, 5.4:1 */
-  --success: #2f7a4f;
-  --danger: #b3261e;
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-2: #f5f5f7;
+  --popover: #ffffff;
+  --secondary: #f2f2f4;
+  --muted: #f2f2f4;
+  --muted-foreground: #6e6e73;
+  --accent: #ececef;
+  --border: #e3e3e8;
+  --input: #d2d2d7;
+  --destructive: #d70015;
+  --destructive-soft: #d7001514;
 
-  /* Product mock-up surfaces, matched to the app */
-  --chat-bg: #f2eee7;
-  --bubble-in: #ffffff;
-  --bubble-out: #f7e9df;
-  --shadow-soft: 0 1px 2px rgb(29 27 23 / 0.04), 0 8px 24px -12px rgb(29 27 23 / 0.12);
+  --primary: #0071e3;
+  --primary-foreground: #ffffff;
+  --primary-hover: #0077ed;
+  --primary-strong: #0058b0;   /* primary text on primary tints */
+  --primary-soft: #0071e314;
+  --primary-soft-2: #0071e324;
+  --ring: #0071e3;
+
+  --success: #248a3d;
+  --success-soft: #34c7591f;
+  --warning: #b25000;
+  --warning-soft: #ff9f0a1f;
+  --brand-orange: #f57c1f;     /* logo and KHAGA mark only, never UI */
+
+  --chart-1: #0071e3;
+  --chart-2: #5ac8fa;
+  --chart-3: #34c759;
+  --chart-4: #ff9f0a;
+  --chart-5: #af52de;
+
+  --sidebar: #f5f5f7;
+  --sidebar-accent: #ffffff;
+  --tab-active: #ffffff;
+  --glass: #fffffff0;
+  --note: #fff6d6;
+  --note-foreground: #5c4a00;
+  --wa: #1fa855;
+  --ig: #d6338a;
+
+  /* Product mock-up surfaces, matched to the app's inbox */
+  --chat-bg: #ffffff;
+  --bubble-in: #f2f2f4;
+  --bubble-out: #0071e3;
+
+  --shadow-soft: 0 1px 2px #0000000a, 0 8px 24px #0000000f;
+  --shadow-sheet: 0 1px 2px #0000000a, 0 24px 64px -24px #00000033;
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.06), 0 4px 14px rgb(0 0 0 / 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #171715;
-    --surface: #1f1e1b;
-    --sunken: #1b1a18;
-    --ink: #f3eee7;
-    --muted: #a39b8e;
-    --line: #34302a;
-    --line-strong: #474239;
-    --copper: #d0794a;
-    --copper-hover: #e08a5c;
-    --copper-soft: #d0794a1f;
-    --copper-ink: #e08a5c;
-    --field: #7a7366;
-    --on-copper: #171715;
-    --success: #5cb784;
-    --danger: #f08a80;
-    --chat-bg: #1b1a17;
-    --bubble-in: #262420;
-    --bubble-out: #3a2a20;
-    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+    --background: #0f0f10;
+    --foreground: #f5f5f7;
+    --card: #1c1c1e;
+    --card-2: #232326;
+    --popover: #232326;
+    --secondary: #2c2c2f;
+    --muted: #2a2a2d;
+    --muted-foreground: #a1a1a8;
+    --accent: #2c2c2f;
+    --border: #2f2f33;
+    --input: #3a3a3e;
+    --destructive: #ff6961;
+    --destructive-soft: #ff696124;
+    --primary: #2997ff;
+    --primary-foreground: #ffffff;
+    --primary-hover: #47a6ff;
+    --primary-strong: #6cb6ff;
+    --primary-soft: #2997ff1c;
+    --primary-soft-2: #2997ff2e;
+    --ring: #2997ff;
+    --success: #30d158;
+    --success-soft: #30d15824;
+    --warning: #ffd60a;
+    --warning-soft: #ffd60a1f;
+    --chart-1: #2997ff;
+    --chart-2: #64d2ff;
+    --chart-3: #30d158;
+    --chart-4: #ffd60a;
+    --chart-5: #bf5af2;
+    --sidebar: #0f0f10;
+    --sidebar-accent: #232326;
+    --tab-active: #3a3a3e;
+    --glass: #1c1c1ef0;
+    --note: #3a3210;
+    --note-foreground: #f3dc8a;
+    --chat-bg: #1c1c1e;
+    --bubble-in: #2a2a2d;
+    --bubble-out: #2997ff;
+    --shadow-soft: 0 1px 2px #0006, 0 8px 24px #0005;
+    --shadow-sheet: 0 1px 2px #0006, 0 24px 64px -24px #000c;
+    --shadow-raised: 0 1px 2px #0006, 0 4px 14px #0004;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #171715;
-  --surface: #1f1e1b;
-  --sunken: #1b1a18;
-  --ink: #f3eee7;
-  --muted: #a39b8e;
-  --line: #34302a;
-  --line-strong: #474239;
-  --copper: #d0794a;
-  --copper-hover: #e08a5c;
-  --copper-soft: #d0794a1f;
-  --copper-ink: #e08a5c;
-  --field: #7a7366;
-  --on-copper: #171715;
-  --success: #5cb784;
-  --danger: #f08a80;
-  --chat-bg: #1b1a17;
-  --bubble-in: #262420;
-  --bubble-out: #3a2a20;
-  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  --background: #0f0f10;
+  --foreground: #f5f5f7;
+  --card: #1c1c1e;
+  --card-2: #232326;
+  --popover: #232326;
+  --secondary: #2c2c2f;
+  --muted: #2a2a2d;
+  --muted-foreground: #a1a1a8;
+  --accent: #2c2c2f;
+  --border: #2f2f33;
+  --input: #3a3a3e;
+  --destructive: #ff6961;
+  --destructive-soft: #ff696124;
+  --primary: #2997ff;
+  --primary-foreground: #ffffff;
+  --primary-hover: #47a6ff;
+  --primary-strong: #6cb6ff;
+  --primary-soft: #2997ff1c;
+  --primary-soft-2: #2997ff2e;
+  --ring: #2997ff;
+  --success: #30d158;
+  --success-soft: #30d15824;
+  --warning: #ffd60a;
+  --warning-soft: #ffd60a1f;
+  --chart-1: #2997ff;
+  --chart-2: #64d2ff;
+  --chart-3: #30d158;
+  --chart-4: #ffd60a;
+  --chart-5: #bf5af2;
+  --sidebar: #0f0f10;
+  --sidebar-accent: #232326;
+  --tab-active: #3a3a3e;
+  --glass: #1c1c1ef0;
+  --note: #3a3210;
+  --note-foreground: #f3dc8a;
+  --chat-bg: #1c1c1e;
+  --bubble-in: #2a2a2d;
+  --bubble-out: #2997ff;
+  --shadow-soft: 0 1px 2px #0006, 0 8px 24px #0005;
+  --shadow-sheet: 0 1px 2px #0006, 0 24px 64px -24px #000c;
+  --shadow-raised: 0 1px 2px #0006, 0 4px 14px #0004;
 }
 
 /* Tokens exposed to Tailwind. `inline` keeps the var() so the theme switch works. */
 @theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-sunken: var(--sunken);
-  --color-ink: var(--ink);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-popover: var(--popover);
+  --color-secondary: var(--secondary);
   --color-muted: var(--muted);
-  --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
-  --color-copper: var(--copper);
-  --color-copper-hover: var(--copper-hover);
-  --color-copper-soft: var(--copper-soft);
-  --color-copper-ink: var(--copper-ink);
-  --color-field: var(--field);
-  --color-on-copper: var(--on-copper);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-destructive: var(--destructive);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-2: var(--primary-soft-2);
+  --color-ring: var(--ring);
   --color-success: var(--success);
-  --color-danger: var(--danger);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-brand-orange: var(--brand-orange);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-tab-active: var(--tab-active);
+  --color-glass: var(--glass);
+  --color-note: var(--note);
+  --color-note-foreground: var(--note-foreground);
+  --color-wa: var(--wa);
+  --color-ig: var(--ig);
   --color-chat: var(--chat-bg);
   --color-bubble-in: var(--bubble-in);
   --color-bubble-out: var(--bubble-out);
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-inter), "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --shadow-soft: var(--shadow-soft);
+  --shadow-sheet: var(--shadow-sheet);
+  --shadow-raised: var(--shadow-raised);
 }
 
 @theme {
   /* Type scale. Each step carries its own line height and tracking. */
-  --text-hero: clamp(2.5rem, 1.75rem + 3.2vw, 4rem); /* 40/46 mobile, 64/72 desktop */
-  --text-hero--line-height: 1.125;
+  --text-hero: clamp(2.5rem, 1.6rem + 3.6vw, 4.25rem);
+  --text-hero--line-height: 1.06;
   --text-hero--letter-spacing: -0.035em;
-  --text-h2: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); /* 44/52 desktop */
-  --text-h2--line-height: 1.18;
+  --text-h2: clamp(2rem, 1.5rem + 1.8vw, 3rem);
+  --text-h2--line-height: 1.1;
   --text-h2--letter-spacing: -0.03em;
-  --text-h3: 1.375rem; /* 22/30 */
-  --text-h3--line-height: 1.364;
-  --text-h3--letter-spacing: -0.015em;
-  --text-lead: 1.1875rem; /* 19/30 */
-  --text-lead--line-height: 1.58;
-  --text-body: 1.0625rem; /* 17/28 */
-  --text-body--line-height: 1.647;
-  --text-small: 0.875rem; /* 14/22 */
-  --text-small--line-height: 1.571;
-  --text-micro: 0.75rem; /* 12/16, mono labels */
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.02em;
+  --text-lead: 1.1875rem;
+  --text-lead--line-height: 1.55;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-micro: 0.75rem;
   --text-micro--line-height: 1.333;
 
-  --radius-card: 1rem; /* 16px cards */
-  --radius-control: 0.625rem;
+  --radius-sm: 0.45rem;
+  --radius-md: 0.6rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.05rem;
+  --radius-2xl: 1.35rem;
+  --radius-card: 0.75rem; /* CRM cards are rounded-xl */
+  --radius-sheet: 18px;   /* CRM app sheet */
+  --radius-control: 9999px;
 
-  --container-site: 75rem; /* 1200px content width */
-  --container-reading: 42rem; /* long-form reading width */
+  --container-site: 75rem;
+  --container-reading: 42rem;
+
+  --ease-studio: cubic-bezier(0.2, 0.8, 0.2, 1);
 
   --animate-msg-in: msg-in 360ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-tick-read: tick-read 240ms ease-out both;
+  --animate-rise: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 
   @keyframes msg-in {
     from {
@@ -156,6 +268,16 @@
     }
     to {
       opacity: 1;
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: none;
     }
   }
 }
@@ -176,11 +298,27 @@
   :root[data-theme="dark"] .theme-icon-moon {
     display: none;
   }
+  /* Logo lockup: light and dark versions, one shown per theme. */
+  .logo-dark {
+    display: none;
+  }
+  :root[data-theme="dark"] .logo-dark {
+    display: block;
+  }
+  :root[data-theme="dark"] .logo-light {
+    display: none;
+  }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .theme-icon-sun {
       display: inline;
     }
     :root:not([data-theme="light"]) .theme-icon-moon {
+      display: none;
+    }
+    :root:not([data-theme="light"]) .logo-dark {
+      display: block;
+    }
+    :root:not([data-theme="light"]) .logo-light {
       display: none;
     }
   }
@@ -191,12 +329,13 @@
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--ink);
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: var(--font-sans);
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
   }
 
@@ -205,8 +344,8 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    color: var(--ink);
+    font-weight: 700;
+    color: var(--foreground);
     text-wrap: balance;
   }
 
@@ -215,13 +354,13 @@
   }
 
   ::selection {
-    background: var(--copper);
-    color: var(--on-copper);
+    background: var(--primary-soft-2);
+    color: var(--foreground);
   }
 
-  /* One focus ring everywhere: visible on cream, white and dark. */
+  /* One focus ring everywhere. */
   :focus-visible {
-    outline: 2px solid var(--copper);
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
 }
@@ -234,19 +373,60 @@
     top: -10rem;
     z-index: 100;
     padding: 0.625rem 1rem;
-    border-radius: var(--radius-control);
-    background: var(--ink);
-    color: var(--bg);
+    border-radius: 9999px;
+    background: var(--foreground);
+    color: var(--background);
     font-weight: 600;
   }
   .skip-link:focus {
     top: 0.75rem;
   }
 
+  /* The CRM's drawing-board grid behind phone previews (.template-phone-stage). */
+  .phone-stage {
+    background-color: var(--muted);
+    background-image:
+      linear-gradient(color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklab, var(--foreground) 7%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Dotted canvas behind the flow builder mock-up. */
+  .flow-canvas {
+    background-color: var(--card-2);
+    background-image: radial-gradient(color-mix(in oklab, var(--foreground) 14%, transparent) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  /* Soft blue glow behind hero product shots. */
+  .hero-glow {
+    background:
+      radial-gradient(60% 50% at 50% 0%, var(--primary-soft-2), transparent 70%),
+      radial-gradient(40% 40% at 85% 30%, color-mix(in oklab, var(--chart-2) 14%, transparent), transparent 70%);
+  }
+
+  /*
+   * App mock-ups are drawn at a fixed design width and scaled to fit their
+   * container, so text keeps its proportions. Set --mock-w on the stage.
+   */
+  .mock-stage {
+    container-type: inline-size;
+    width: 100%;
+  }
+  .mock-canvas {
+    width: calc(var(--mock-w, 1200) * 1px);
+    zoom: calc(100cqw / (var(--mock-w, 1200) * 1px));
+  }
+  @supports not (zoom: calc(100cqw / 1200px)) {
+    .mock-canvas {
+      zoom: 1;
+    }
+  }
+
   /* Long-form text for legal pages and guides. Wrap with <Prose>. */
   .prose-bx {
     max-width: var(--container-reading);
-    color: var(--ink);
+    color: var(--foreground);
     font-size: var(--text-body);
     line-height: 1.75;
   }
@@ -269,13 +449,13 @@
     margin-top: 0.6em;
   }
   .prose-bx a {
-    color: var(--copper);
+    color: var(--primary);
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
   }
   .prose-bx a:hover {
-    color: var(--copper-hover);
+    color: var(--primary-hover);
   }
   .prose-bx strong {
     font-weight: 600;
@@ -294,23 +474,23 @@
     margin-top: 0.4em;
   }
   .prose-bx li::marker {
-    color: var(--muted);
+    color: var(--muted-foreground);
   }
   .prose-bx blockquote {
-    border-left: 2px solid var(--line-strong);
+    border-left: 2px solid var(--input);
     padding-left: 1em;
-    color: var(--muted);
+    color: var(--muted-foreground);
   }
   .prose-bx code {
     font-family: var(--font-mono);
     font-size: 0.875em;
-    background: var(--sunken);
+    background: var(--muted);
     padding: 0.1em 0.35em;
     border-radius: 4px;
   }
   .prose-bx hr {
     border: 0;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--border);
     margin: 2.5em 0;
   }
   .prose-bx table {
@@ -322,7 +502,7 @@
   }
   .prose-bx th,
   .prose-bx td {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--border);
     padding: 0.6em 0.8em;
     text-align: left;
     vertical-align: top;
@@ -332,7 +512,7 @@
   }
 }
 
-/* Motion: one orchestrated hero moment, 200ms hovers, nothing else.
+/* Motion: hero entrance, 150ms hovers, nothing else.
    With reduced motion every element shows its final state at once. */
 @media (prefers-reduced-motion: reduce) {
   *,

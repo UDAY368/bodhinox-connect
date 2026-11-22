@@ -1,14 +1,16 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { buttonClasses } from "@/components/ui/Button";
-import { headerNav } from "@/content/nav";
+import { featureGroups, featuresIn } from "@/content/features";
+import { headerNav, platformNav, resourcesNav } from "@/content/nav";
 import { site } from "@/content/site";
 import { NavLink } from "./NavLink";
 import { ThemeToggle } from "./ThemeToggle";
 
-/** Slide-down menu below md. Closes on Escape, on link click and on outside click. */
+/** Slide-down menu below lg. Closes on Escape, on link click and on outside click. */
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -27,7 +29,6 @@ export function MobileMenu() {
       if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);
     }
     function onFocus(e: FocusEvent) {
-      // Tabbing past the panel would move focus under it, so close it.
       if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);
     }
     document.addEventListener("keydown", onKey);
@@ -43,7 +44,7 @@ export function MobileMenu() {
   const close = () => setOpen(false);
 
   return (
-    <div ref={rootRef} className="md:hidden">
+    <div ref={rootRef} className="lg:hidden">
       <button
         ref={buttonRef}
         type="button"
@@ -51,31 +52,87 @@ export function MobileMenu() {
         aria-controls={panelId}
         aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex size-11 items-center justify-center rounded-control text-ink hover:bg-sunken"
+        className="inline-flex size-11 items-center justify-center rounded-full text-foreground hover:bg-accent"
       >
         {open ? <X size={22} aria-hidden /> : <Menu size={22} aria-hidden />}
       </button>
 
-      <div id={panelId} hidden={!open} className="absolute inset-x-0 top-full border-b border-line bg-bg shadow-soft">
+      <div
+        id={panelId}
+        hidden={!open}
+        className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-border bg-background shadow-soft"
+      >
         <nav aria-label="Mobile" className="mx-auto max-w-site px-4 pt-2 pb-6 sm:px-6">
+          <details className="group border-b border-border">
+            <summary className="flex h-12 cursor-pointer list-none items-center justify-between text-body text-foreground">
+              Product
+              <ChevronDown className="size-4 transition-transform group-open:rotate-180" aria-hidden />
+            </summary>
+            <div className="pb-3">
+              {featureGroups.map((g) => (
+                <div key={g.id} className="mt-2">
+                  <p className="text-[0.75rem] font-semibold tracking-[0.04em] text-muted-foreground uppercase">{g.label}</p>
+                  <ul className="mt-1">
+                    {featuresIn(g.id).map((f) => (
+                      <li key={f.slug}>
+                        <Link href={f.href} onClick={close} className="flex h-10 items-center gap-2.5 text-small text-foreground">
+                          <f.icon className="size-4 text-primary" aria-hidden />
+                          {f.shortTitle}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <ul className="mt-2 border-t border-border pt-2">
+                <li>
+                  <Link href="/features" onClick={close} className="flex h-10 items-center text-small font-semibold text-primary">
+                    All features
+                  </Link>
+                </li>
+                {platformNav.slice(0, 3).map((p) => (
+                  <li key={p.href}>
+                    <Link href={p.href} onClick={close} className="flex h-10 items-center text-small text-foreground">
+                      {p.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </details>
           <ul className="flex flex-col">
             {headerNav.map((item) => (
-              <li key={item.href} className="border-b border-line">
+              <li key={item.href} className="border-b border-border">
                 <NavLink href={item.href} onClick={close} className="flex h-12 items-center text-body">
                   {item.label}
                 </NavLink>
               </li>
             ))}
           </ul>
+          <details className="group border-b border-border">
+            <summary className="flex h-12 cursor-pointer list-none items-center justify-between text-body text-foreground">
+              Resources
+              <ChevronDown className="size-4 transition-transform group-open:rotate-180" aria-hidden />
+            </summary>
+            <ul className="pb-3">
+              {resourcesNav.map((r) => (
+                <li key={r.href + r.label}>
+                  <Link href={r.href} onClick={close} className="flex h-10 items-center text-small text-foreground">
+                    {r.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </details>
           <div className="mt-5 flex flex-col gap-3">
-            <a href={site.signupUrl} className={buttonClasses({ variant: "primary", size: "lg" })}>
+            <Link href={site.signupUrl} onClick={close} className={buttonClasses({ variant: "primary", size: "lg" })}>
               Start free
-            </a>
-            <a href={site.loginUrl} className={buttonClasses({ variant: "secondary", size: "lg" })}>
+            </Link>
+            <Link href={site.loginUrl} onClick={close} className={buttonClasses({ variant: "secondary", size: "lg" })}>
               Sign in
-            </a>
+            </Link>
           </div>
-          <div className="mt-4 flex items-center justify-between text-small text-muted">
+          <div className="mt-4 flex items-center justify-between text-small text-muted-foreground">
             <span>Theme</span>
             <ThemeToggle />
           </div>

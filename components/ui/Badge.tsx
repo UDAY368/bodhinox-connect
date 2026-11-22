@@ -3,23 +3,28 @@ import { cx } from "./cx";
 
 type BadgeProps = {
   children: ReactNode;
-  /** neutral for labels, copper for "Most popular", success for "Approved", outline for "Coming soon". */
-  tone?: "neutral" | "copper" | "success" | "outline";
+  /**
+   * neutral for labels, primary for "Most popular", success for "Live" or
+   * "Approved", warning for "Coming soon" style notes, outline for quiet tags.
+   */
+  tone?: "neutral" | "primary" | "success" | "warning" | "outline";
   className?: string;
 };
 
 const tones = {
-  neutral: "bg-sunken text-ink",
-  copper: "bg-copper-soft text-copper-ink",
-  success: "bg-sunken text-success",
-  outline: "border border-line-strong text-muted",
+  neutral: "bg-muted text-foreground",
+  primary: "bg-primary-soft text-primary-strong",
+  success: "bg-success-soft text-success",
+  warning: "bg-warning-soft text-warning",
+  outline: "border border-border text-muted-foreground",
 } as const;
 
+/** The CRM's 20px pill badge. */
 export function Badge({ children, tone = "neutral", className }: BadgeProps) {
   return (
     <span
       className={cx(
-        "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-micro font-medium whitespace-nowrap",
+        "inline-flex h-6 items-center gap-1 rounded-full px-2.5 text-[0.75rem] font-medium whitespace-nowrap",
         tones[tone],
         className,
       )}

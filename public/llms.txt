@@ -1,21 +1,43 @@
 # Bodhinox Connect
 
-> Bodhinox Connect is a WhatsApp CRM and marketing platform for Indian businesses. It brings your WhatsApp inbox, campaigns, automation, AI agent, store and payments into one simple platform, built on the official WhatsApp Business Platform (Cloud API). Plans are priced in INR, before 18% GST.
+> Bodhinox Connect is a WhatsApp and Instagram CRM and marketing platform for Indian businesses. One workspace holds a shared inbox for WhatsApp and Instagram, contacts and sales pipelines, campaigns and templates, visual chatbot flows, KHAGA AI agents, click-to-WhatsApp ads reporting, an online store with Razorpay payments and Shiprocket shipping, and appointment booking. It is built on Meta's official WhatsApp Business Platform (Cloud API). Plans are priced in INR per month, before 18% GST.
 
-Bodhinox Connect is operated by Bodhinox, India. It is not affiliated with or endorsed by Meta. WhatsApp and Meta are trademarks of Meta Platforms, Inc.
+Bodhinox Connect is operated by Bodhinox, India. It is not affiliated with or endorsed by Meta. WhatsApp, Instagram and Meta are trademarks of Meta Platforms, Inc.
+
+## Pricing
+
+- Starter: ₹1,499 a month, for small businesses starting with WhatsApp and Instagram
+- Growth: ₹3,499 a month, for growing teams selling and automating every day
+- Scale: ₹7,999 a month, for multi-team businesses with high volume
+- Enterprise: from ₹24,999 a month, with custom limits
+- Billing monthly, quarterly (10% off) or yearly (20% off). Prices exclude 18% GST.
+- WhatsApp message charges are passed on at Meta's published rate with zero markup.
+- No fee on store orders or paid bookings.
+- 14-day free trial of Growth, no card needed.
+- Full comparison: https://www.bodhinoxconnect.in/pricing
 
 ## Product
 
 - [Home](https://www.bodhinoxconnect.in): what Bodhinox Connect does, in one page
 - [All features](https://www.bodhinoxconnect.in/features): every part of the product
-- [Shared team inbox](https://www.bodhinoxconnect.in/features/team-inbox): every WhatsApp chat from every number in one inbox, with assignment, notes and bot handover
-- [Campaigns and broadcasts](https://www.bodhinoxconnect.in/features/campaigns): send approved templates to the right customers and track delivery and reads
-- [Flows and automation](https://www.bodhinoxconnect.in/features/automation): visual chat flows and automations on events, keywords and schedules
-- [AI agent](https://www.bodhinoxconnect.in/features/ai-agent): answers customers from your own knowledge base and hands sensitive chats to a person
-- [Store and payments](https://www.bodhinoxconnect.in/features/commerce): products in chat, payment by UPI, card or cash on delivery through Razorpay, shipping with tracking
-- [CRM, analytics and platform](https://www.bodhinoxconnect.in/features/crm-analytics): contact timelines, deal pipelines and reports
-- [Pricing](https://www.bodhinoxconnect.in/pricing): Free, Basic, Pro and Enterprise plans in INR
-- [Solutions by industry](https://www.bodhinoxconnect.in/solutions): retail and D2C, clinics, education, real estate, services, restaurants
+- [Shared team inbox](https://www.bodhinoxconnect.in/features/team-inbox): WhatsApp and Instagram chats in one inbox, with assignment, notes, 24-hour window timers and bot handover
+- [Contacts, pipelines and analytics](https://www.bodhinoxconnect.in/features/crm-analytics): contacts, segments, consent records, deal pipelines and reports
+- [WhatsApp Forms](https://www.bodhinoxconnect.in/features/whatsapp-forms): multi-screen forms inside the chat that save answers to the contact
+- [Instagram automation](https://www.bodhinoxconnect.in/features/instagram): comment-to-DM, story reply leads and an Instagram DM inbox
+- [Flows and automation](https://www.bodhinoxconnect.in/features/automation): visual chatbot builder, rules and sequences, with dry runs and versions
+- [Campaigns and templates](https://www.bodhinoxconnect.in/features/campaigns): broadcasts of Meta-approved templates, with delivery, read, reply, order and revenue reports and retargeting
+- [Click-to-WhatsApp ads](https://www.bodhinoxconnect.in/features/ads): Meta Ads reporting from ad click to chat to customer
+- [KHAGA AI agents](https://www.bodhinoxconnect.in/features/ai-agent): AI agents that answer from your own knowledge on WhatsApp and Instagram and hand over to a person
+- [Products, online store and payments](https://www.bodhinoxconnect.in/features/commerce): catalogue with Meta sync, your own online store, Razorpay UPI payments, cash on delivery and Shiprocket shipping
+- [Appointments and bookings](https://www.bodhinoxconnect.in/features/appointments): booking pages confirmed on WhatsApp, reminders and paid appointments
+- [Pricing](https://www.bodhinoxconnect.in/pricing): Starter, Growth, Scale and Enterprise plans in INR
+- [Solutions by industry](https://www.bodhinoxconnect.in/solutions): retail and D2C, clinics and wellness, education, real estate, services, restaurants
+
+## Platform
+
+- [Integrations](https://www.bodhinoxconnect.in/integrations): Shopify, WooCommerce, Razorpay, Shiprocket, Meta catalogue, Meta Ads, Google Sheets, webhooks and the public API; Zoom coming soon
+- [Developers](https://www.bodhinoxconnect.in/developers): REST API at /api/v1 with scoped keys, and HMAC-signed webhooks for messages, flows, orders, payments and appointments
+- [Security and privacy](https://www.bodhinoxconnect.in/security): workspace isolation with PostgreSQL row-level security, roles, two-factor sign-in, audit log, encrypted secrets, consent records and data deletion
 - [WhatsApp Business Platform](https://www.bodhinoxconnect.in/whatsapp-business-platform): how Bodhinox Connect connects to Meta and what permissions it uses
 
 ## Guides

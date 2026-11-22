@@ -39,7 +39,7 @@ export const industries: Industry[] = [
     summary: "Book appointments in chat and send reminders.",
     problem:
       "The front desk spends the day answering the same questions about timings and fees, and patients miss appointments they booked weeks ago.",
-    features: ["commerce", "automation", "team-inbox"],
+    features: ["appointments", "automation", "team-inbox"],
     exampleFlow: [
       "A patient asks to book a visit",
       "A flow shows services, doctors and free slots",
@@ -53,7 +53,7 @@ export const industries: Industry[] = [
     summary: "Answer admission questions and follow up with every lead.",
     problem:
       "Admission enquiries arrive at all hours, and leads go cold because nobody follows up after the first reply.",
-    features: ["ai-agent", "crm-analytics", "campaigns"],
+    features: ["ai-agent", "whatsapp-forms", "crm-analytics"],
     exampleFlow: [
       "A parent asks about fees for a course",
       "The AI agent answers from your prospectus",
@@ -67,7 +67,7 @@ export const industries: Industry[] = [
     summary: "Qualify enquiries and route them to the right agent.",
     problem:
       "Portal and ad leads arrive in bulk, and good buyers wait while agents sort through people who were only browsing.",
-    features: ["automation", "team-inbox", "crm-analytics"],
+    features: ["ads", "automation", "crm-analytics"],
     exampleFlow: [
       "A buyer messages from a click-to-WhatsApp ad",
       "A flow asks for budget, location and timeline",
@@ -81,7 +81,7 @@ export const industries: Industry[] = [
     summary: "Take bookings and payments without the back and forth.",
     problem:
       "Salons, repair services and consultants lose hours confirming slots, chasing payments and reminding customers.",
-    features: ["commerce", "automation", "ai-agent"],
+    features: ["appointments", "commerce", "ai-agent"],
     exampleFlow: [
       "A customer asks for the next free slot",
       "The flow offers services, staff and times",

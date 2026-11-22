@@ -52,22 +52,22 @@ export function LegalPage({ title, crumb, path, intro, sections }: LegalPageProp
       <header className="max-w-3xl">
         <Eyebrow>Legal</Eyebrow>
         <h1 className="mt-3 text-h2">{title}</h1>
-        <p className="mt-4 font-mono text-small text-muted">
+        <p className="mt-4 text-small text-muted-foreground">
           Last updated: <time dateTime={updated}>{formatDate(updated)}</time>
         </p>
       </header>
 
       <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16">
         <nav aria-labelledby="toc-heading" className="lg:sticky lg:top-24 lg:self-start">
-          <h2 id="toc-heading" className="font-mono text-micro font-medium tracking-[0.08em] text-muted uppercase">
+          <h2 id="toc-heading" className="text-micro font-semibold tracking-[0.04em] text-muted-foreground uppercase">
             On this page
           </h2>
-          <ol className="mt-3 space-y-1 border-l border-line text-small">
+          <ol className="mt-3 space-y-1 border-l border-border text-small">
             {sections.map((s) => (
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors duration-200 hover:border-copper hover:text-ink"
+                  className="-ml-px block border-l border-transparent py-1 pl-4 text-muted-foreground transition-colors duration-200 hover:border-primary hover:text-foreground"
                 >
                   {s.title}
                 </a>
@@ -90,14 +90,14 @@ export function LegalPage({ title, crumb, path, intro, sections }: LegalPageProp
             ))}
           </Prose>
 
-          <aside aria-labelledby="related-heading" className="mt-16 max-w-reading border-t border-line pt-8">
+          <aside aria-labelledby="related-heading" className="mt-16 max-w-reading border-t border-border pt-8">
             <h2 id="related-heading" className="text-h3">
               Related policies
             </h2>
             <ul className="mt-4 space-y-2">
               {others.map((r) => (
                 <li key={r.href}>
-                  <Link href={r.href} className="text-copper underline underline-offset-4 hover:text-copper-hover">
+                  <Link href={r.href} className="text-primary underline underline-offset-4 hover:text-primary-hover">
                     {r.label}
                   </Link>
                 </li>

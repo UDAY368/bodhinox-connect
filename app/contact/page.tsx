@@ -22,7 +22,7 @@ const demoCovers = [
 
 export default function Page() {
   const address = formatAddress();
-  const linkClass = "text-copper underline underline-offset-4 hover:text-copper-hover";
+  const linkClass = "text-primary underline underline-offset-4 hover:text-primary-hover";
 
   return (
     <Container className="pt-10 pb-16 md:pt-14 md:pb-24">
@@ -32,12 +32,12 @@ export default function Page() {
         <div>
           <Eyebrow>Contact</Eyebrow>
           <h1 className="mt-3 text-hero">Talk to us</h1>
-          <p className="mt-6 text-lead text-muted">
+          <p className="mt-6 text-lead text-muted-foreground">
             Book a demo, ask about plans or get help with setup. We read every message.
           </p>
 
           <section aria-labelledby="reach-us" className="mt-10">
-            <h2 id="reach-us" className="font-mono text-micro font-medium tracking-[0.08em] text-muted uppercase">
+            <h2 id="reach-us" className="text-micro font-semibold tracking-[0.04em] text-muted-foreground uppercase">
               Support and sales
             </h2>
             <p className="mt-3 text-h3 font-display font-semibold break-words">
@@ -45,14 +45,14 @@ export default function Page() {
                 {site.email}
               </a>
             </p>
-            <p className="mt-2 text-small text-muted">For sales, support, privacy and data requests.</p>
+            <p className="mt-2 text-small text-muted-foreground">For sales, support, privacy and data requests.</p>
 
-            <address className="mt-8 space-y-1.5 text-body text-ink not-italic">
+            <address className="mt-8 space-y-1.5 text-body text-foreground not-italic">
               <span className="block font-semibold">{company.brand}</span>
-              <span className="block text-muted">
+              <span className="block text-muted-foreground">
                 Operated by {company.legalName || company.operator}, {company.country}
               </span>
-              {address ? <span className="block text-muted">{address}</span> : null}
+              {address ? <span className="block text-muted-foreground">{address}</span> : null}
               {company.phone ? (
                 <span className="block">
                   Phone:{" "}
@@ -64,22 +64,22 @@ export default function Page() {
             </address>
           </section>
 
-          <section aria-labelledby="demo-covers" className="mt-10 border-t border-line pt-8">
+          <section aria-labelledby="demo-covers" className="mt-10 border-t border-border pt-8">
             <h2 id="demo-covers" className="text-h3">
               What a demo covers
             </h2>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-body text-muted marker:text-muted">
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-body text-muted-foreground marker:text-muted-foreground">
               {demoCovers.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </section>
 
-          <section aria-labelledby="other-requests" className="mt-10 border-t border-line pt-8">
+          <section aria-labelledby="other-requests" className="mt-10 border-t border-border pt-8">
             <h2 id="other-requests" className="text-h3">
               Data and privacy requests
             </h2>
-            <p className="mt-3 text-body text-muted">
+            <p className="mt-3 text-body text-muted-foreground">
               To delete data or remove a connected account, see{" "}
               <Link href="/data-deletion" className={linkClass}>
                 data deletion
@@ -93,11 +93,11 @@ export default function Page() {
           </section>
         </div>
 
-        <section aria-labelledby="demo-form" className="rounded-card border border-line bg-surface p-5 sm:p-8">
+        <section aria-labelledby="demo-form" className="rounded-card border border-border bg-card p-5 sm:p-8">
           <h2 id="demo-form" className="text-h3">
             Request a demo
           </h2>
-          <p className="mt-2 text-body text-muted">Tell us a little about your business and we will reply by email.</p>
+          <p className="mt-2 text-body text-muted-foreground">Tell us a little about your business and we will reply by email.</p>
           <div className="mt-6">
             <ContactForm endpoint={site.contactEndpoint} email={site.email} />
           </div>

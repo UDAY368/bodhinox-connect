@@ -25,10 +25,15 @@ export const site = {
   locale: "en_IN",
   language: "en-IN",
 
-  /** The product app. "Start free" and "Sign in" point here. */
+  /** The product app (not linked yet). */
   appUrl,
-  signupUrl: `${appUrl}/signup`,
-  loginUrl: `${appUrl}/login`,
+  /**
+   * Where "Start free" and "Sign in" go. For now both open the contact page
+   * (owner decision, 22 Nov 2026). Switch to `${appUrl}/signup` and
+   * `${appUrl}/login` when the app domain is live.
+   */
+  signupUrl: "/contact",
+  loginUrl: "/contact",
 
   /** Contact form POST endpoint (for example Formspree). Empty means fall back to mailto:. */
   contactEndpoint: process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "",

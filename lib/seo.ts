@@ -178,16 +178,16 @@ export function softwareApplicationJsonLd() {
 
 function offersFromPlans() {
   return plans
-    .filter((p) => p.monthly !== null)
+    .filter((p) => p.price.monthly !== null)
     .map((p) => ({
       "@type": "Offer",
       name: `${p.name} plan`,
-      price: String(p.monthly),
+      price: String(p.price.monthly),
       priceCurrency: "INR",
       url: absoluteUrl("/pricing"),
       priceSpecification: {
         "@type": "UnitPriceSpecification",
-        price: String(p.monthly),
+        price: String(p.price.monthly),
         priceCurrency: "INR",
         unitCode: "MON",
         unitText: "MONTH",

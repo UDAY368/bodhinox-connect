@@ -1,6 +1,18 @@
 import Link from "next/link";
-import { CopySection, PillarPage } from "@/components/features/PillarPage";
-import { CampaignReportMockup, TemplateMockup } from "@/components/features/PillarMockups";
+import {
+  CopySection,
+  HeroScreen,
+  HighlightRow,
+  Highlights,
+  PillarPage,
+  ScreenVisual,
+} from "@/components/features/PillarPage";
+import {
+  BroadcastReportScreen,
+  BroadcastsScreen,
+  RetargetCard,
+  TemplatesScreen,
+} from "@/components/product/screens/CampaignsScreen";
 import { getFeature } from "@/content/features";
 import type { Faq } from "@/content/faqs";
 import { pageMetadata } from "@/lib/seo";
@@ -22,12 +34,17 @@ const faqs: Faq[] = [
   {
     question: "How much does each broadcast message cost?",
     answer:
-      "Meta charges for WhatsApp conversations at its published rates, which depend on the template category and the customer's country. Meta bills your business for these directly. They are not part of our plan prices, which cover the software.",
+      "Meta charges for WhatsApp messages at its published rates, which depend on the template category and the customer's country. Meta bills your business for these directly and we add no markup. They are not part of our plan prices, which cover the software.",
   },
   {
     question: "How many people can I send a campaign to?",
     answer:
-      "It depends on your plan: up to 250 recipients per send on Free, 10,000 on Basic, 50,000 on Pro and no limit on Enterprise. Meta also sets a daily messaging limit for your number, which rises as you send good quality messages.",
+      "Meta sets a daily messaging limit for each number, which rises as you send good quality messages. Bodhinox Connect shows your number's quality rating and today's limit before you send, so a large campaign does not stop halfway.",
+  },
+  {
+    question: "Which template types can I create?",
+    answer:
+      "Standard templates with text, images, video, documents, buttons and variables, plus carousel templates, one-time code templates for logins and limited-time offer templates with an expiry. You can start from the template library or ask the AI template writer for a draft, then submit it to Meta for approval.",
   },
   {
     question: "What happens if some messages fail to send?",
@@ -40,13 +57,75 @@ export default function Page() {
   return (
     <PillarPage
       feature={feature}
-      h1="WhatsApp broadcast and marketing software"
-      lead="Send approved WhatsApp templates to exactly the customers who should get them, see who received and read each one, and follow up with the people who did not reply."
-      heroVisual={<CampaignReportMockup />}
+      h1="WhatsApp broadcast software that reports revenue"
+      lead="Send approved WhatsApp templates to exactly the customers who should get them, see who read, replied, clicked and bought, and follow up with the people who did not reply."
+      heroVisual={
+        <HeroScreen label="Campaigns list with number quality, daily limit and, for each broadcast, audience, sent, delivered, read, replied, orders and revenue.">
+          <BroadcastsScreen height={760} />
+        </HeroScreen>
+      }
       bulletsHeading="Everything in campaigns"
       faqs={faqs}
-      related={["automation", "crm-analytics", "commerce"]}
+      related={["automation", "ads", "crm-analytics"]}
     >
+      <Highlights label="Campaign highlights">
+        <HighlightRow
+          id="hl-templates"
+          eyebrow="Templates"
+          heading="Every template type, with Meta approval status"
+          visual={
+            <ScreenVisual
+              designWidth={1280}
+              label="Template library with carousel, standard, limited-time offer and one-time password templates, each marked approved, pending or rejected, and a carousel preview on a phone."
+            >
+              <TemplatesScreen height={720} />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            Write standard, carousel, one-time code and limited-time offer templates, start from the library or let the
+            AI writer draft one. Approved, pending and rejected are shown on each card, with the reason when Meta says no.
+          </p>
+        </HighlightRow>
+        <HighlightRow
+          flip
+          id="hl-report"
+          eyebrow="Honest reports"
+          heading="Delivered, read, replied, clicked, bought"
+          visual={
+            <ScreenVisual
+              designWidth={1280}
+              label="A campaign report with delivered, read, replied and clicked counts, orders and revenue from the campaign."
+            >
+              <BroadcastReportScreen height={720} />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            Each campaign shows the full funnel, from delivery to orders and revenue in rupees. You see which offer
+            actually sold, not only which one got blue ticks.
+          </p>
+        </HighlightRow>
+        <HighlightRow
+          id="hl-retarget"
+          eyebrow="Retargeting"
+          heading="Follow up only with the people who need it"
+          visual={
+            <ScreenVisual
+              designWidth={600}
+              label="Retarget panel: choose people who read but did not reply, clicked but did not order, or were delivered but did not read, with the estimated cost."
+            >
+              <RetargetCard />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            Pick everyone who read but did not reply, clicked but did not order, or never opened the first message. The
+            estimated Meta cost and today&apos;s limit are shown before you send.
+          </p>
+        </HighlightRow>
+      </Highlights>
+
       <CopySection id="problem" eyebrow="The problem" heading="Broadcast lists and forwards do not scale">
         <p>
           On the WhatsApp Business app, a broadcast list holds a limited number of people, and a message only reaches
@@ -60,51 +139,38 @@ export default function Page() {
         </p>
         <p>
           WhatsApp marketing works when the right message reaches the right person at a sensible time, through the
-          official platform, and you can see what happened afterwards.
-        </p>
-        <p>
-          It also helps to know how WhatsApp itself works. When a customer messages you, a 24-hour customer service
-          window opens and you can reply freely. Outside that window, a business can only start a conversation with a
-          template Meta has approved. Campaigns are built around that rule, so every broadcast you send is one WhatsApp
-          allows.
+          official platform, and you can see what happened afterwards. It also helps to know the rule underneath: when a
+          customer messages you, a 24-hour customer service window opens and you can reply freely. Outside that window, a
+          business can only start a conversation with a template Meta has approved. Campaigns are built around that rule.
         </p>
       </CopySection>
 
-      <CopySection
-        id="how-it-works"
-        eyebrow="How it works"
-        heading="From template to report in one place"
-        aside={<TemplateMockup />}
-      >
+      <CopySection id="how-it-works" eyebrow="How it works" heading="From template to revenue report in one place" tone="sunken">
         <h3>Build a template and get it approved</h3>
         <p>
           Every business-started WhatsApp message uses a template that Meta approves first. The template builder helps
-          you write standard templates with images, buttons and variables, as well as carousel templates, one-time-code
-          templates for logins and limited-time offer templates with an expiry. Each template carries its Meta category,
-          Marketing, Utility or Authentication, and you can see whether it is approved, in review or rejected.
+          you write standard templates with images, buttons and variables, carousel templates, one-time-code templates
+          for logins and limited-time offer templates with an expiry. Each template carries its Meta category, Marketing,
+          Utility or Authentication, and you can see whether it is approved, in review or rejected.
         </p>
         <h3>Choose who gets it</h3>
         <p>
-          Send to all your contacts or narrow it down: a tag such as repeat-buyer, a saved segment such as customers in
-          Pune who ordered in the last 90 days, a list, a custom field, or a CSV you upload for this one campaign.
-          Contacts who replied STOP or whom you blocked are left out automatically.
+          Send to all your contacts or narrow it down: a tag such as repeat-buyer, a live segment such as customers in
+          Pune who ordered in the last 90 days, a list, a custom field, or a CSV you upload for this one campaign. Add
+          exclusions, and contacts who replied STOP are left out automatically.
         </p>
-        <h3>Personalise, schedule and pace</h3>
+        <h3>Personalise, test and schedule</h3>
         <p>
           Fill template variables from contact data, so each customer sees their own name, order number or coupon code.
-          Schedule the send for the hour your customers are most likely to read, and pace it so a large campaign goes out
-          steadily instead of all at once. Pacing also keeps your team from being flooded with replies in the same
-          minute.
+          Send a test to your own phone first, then schedule the campaign for the hour your customers are most likely to
+          read, up to 90 days ahead. Your number&apos;s quality rating and daily limit are shown before you confirm.
         </p>
         <h3>Track and follow up</h3>
         <p>
-          The campaign report shows how many messages were delivered, read, replied to and clicked. From there you can
-          retarget: send a follow-up only to the people who read but did not reply, or a reminder to those who never
-          opened the first message. Replies land in the shared inbox, so a sales person can pick up the conversation.
-        </p>
-        <p>
-          When a send fails, you can retry it from the campaign. When the outcome is unclear, the message is held for
-          review rather than resent, so no customer receives a duplicate.
+          The campaign report shows how many messages were delivered, read, replied to and clicked, and the orders and
+          revenue that followed. From there you can retarget: a follow-up only to the people who read but did not reply,
+          or a reminder to those who never opened the first message. Replies land in the shared inbox, so a sales person
+          can pick up the conversation.
         </p>
       </CopySection>
 
@@ -119,7 +185,7 @@ export default function Page() {
           Use Utility templates for order updates, reminders and account messages, and Marketing templates for offers and
           news. Keeping the two apart helps customers trust your messages and keeps your number&apos;s quality rating
           healthy. Always collect opt-in first, give an easy way to stop, and never message purchased lists. Our{" "}
-          <Link href="/acceptable-use" className="text-copper underline underline-offset-4 hover:text-copper-hover">
+          <Link href="/acceptable-use" className="text-primary underline underline-offset-4 hover:text-primary-hover">
             acceptable use policy
           </Link>{" "}
           sets out the rules in plain words.

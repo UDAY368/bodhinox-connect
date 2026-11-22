@@ -1,5 +1,12 @@
-import { CopySection, PillarPage } from "@/components/features/PillarPage";
-import { AiActivityLogMockup, AiAgentChatMockup } from "@/components/features/PillarMockups";
+import {
+  CopySection,
+  HeroScreen,
+  HighlightRow,
+  Highlights,
+  PillarPage,
+  ScreenVisual,
+} from "@/components/features/PillarPage";
+import { AiActivityCard, AiAgentsScreen, AiSummaryCard, KnowledgeCard } from "@/components/product/screens/AiScreen";
 import { getFeature } from "@/content/features";
 import type { Faq } from "@/content/faqs";
 import { pageMetadata } from "@/lib/seo";
@@ -14,14 +21,24 @@ export const metadata = pageMetadata({
 
 const faqs: Faq[] = [
   {
+    question: "What is KHAGA AI?",
+    answer:
+      "KHAGA is the name of the AI built into Bodhinox Connect. It powers the AI agents that reply to customers on WhatsApp and Instagram, and the assistant features that help your team in the inbox with summaries, suggested replies and lead scores.",
+  },
+  {
     question: "Where does the WhatsApp AI agent get its answers from?",
     answer:
-      "From the knowledge base you give it: pages from your website, documents you upload and FAQs you write. It answers from that material. When it is not confident enough, it hands the chat to your team instead of guessing.",
+      "From the knowledge you give it: pages from your website, documents you upload and FAQs you write. You can switch each source on or off. When it is not confident enough, it hands the chat to your team instead of guessing.",
   },
   {
     question: "Can I stop the AI agent from handling certain topics?",
     answer:
-      "Yes. Sensitive topics go to a person by design, and you can add your own handoff keywords, such as refund, complaint or doctor. You also set a confidence threshold and a maximum number of turns, after which a person takes over.",
+      "Yes. Sensitive topics go to a person by design, and you can add your own handoff rules, such as refund, complaint or doctor. You also set a confidence limit, below which a person takes over.",
+  },
+  {
+    question: "Can I test an agent before customers see it?",
+    answer:
+      "Yes. Every agent has a test playground where you can ask it questions the way a customer would and check its answers and handoffs before you switch it on.",
   },
   {
     question: "Will my customers know they are talking to an AI agent?",
@@ -29,9 +46,9 @@ const faqs: Faq[] = [
       "That is your choice of wording, and we recommend being open about it. Many businesses introduce the agent as their assistant and mention that a team member can step in at any time. A person can take over any chat in one click.",
   },
   {
-    question: "Is the AI agent included in every plan?",
+    question: "Who can turn on the AI assistant features for the team?",
     answer:
-      "The AI agent is included in the Pro and Enterprise plans. On the Free and Basic plans it is available as a paid add-on. Usage is tracked in the app so you can see how much the agent is doing.",
+      "A workspace owner or admin switches on the assistant features, such as chat summaries, suggested replies and lead scores, in settings. AI usage is shown in the app, and extra AI message packs are available if you need more.",
   },
 ];
 
@@ -39,18 +56,77 @@ export default function Page() {
   return (
     <PillarPage
       feature={feature}
-      h1="A WhatsApp AI agent that answers from your knowledge"
-      lead="The AI agent replies to customers at any hour using your website, documents and FAQs. It follows the rules you set, and passes sensitive or uncertain chats to your team."
-      heroVisual={<AiAgentChatMockup />}
-      bulletsHeading="Everything in the AI agent"
+      h1="KHAGA AI agents that answer WhatsApp from your knowledge"
+      lead="AI agents reply to customers on WhatsApp and Instagram at any hour, using your website, documents and FAQs. They follow the rules you set, and pass sensitive or uncertain chats to your team."
+      heroVisual={
+        <HeroScreen label="AI agents screen: agent cards with their channels, working hours, conversations handled and share solved without a person, plus a test button.">
+          <AiAgentsScreen height={760} />
+        </HeroScreen>
+      }
+      bulletsHeading="Everything in KHAGA AI"
       faqs={faqs}
-      related={["team-inbox", "automation", "crm-analytics"]}
+      related={["team-inbox", "automation", "instagram"]}
     >
+      <Highlights label="KHAGA AI highlights">
+        <HighlightRow
+          id="hl-knowledge"
+          eyebrow="Your knowledge"
+          heading="It reads your documents, website and FAQs first"
+          visual={
+            <ScreenVisual
+              designWidth={620}
+              label="Knowledge sources for the AI agents: a product catalogue PDF, website pages, a shipping and returns FAQ and a pricing note, with status and size."
+            >
+              <KnowledgeCard />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            Add a price list, a policy document, your website and the FAQs you answer every day. Each source can be
+            switched on or off, and every agent answers only from what you gave it.
+          </p>
+        </HighlightRow>
+        <HighlightRow
+          flip
+          id="hl-activity"
+          eyebrow="Handoff and activity"
+          heading="Every reply and every handoff, with the reason"
+          visual={
+            <ScreenVisual
+              designWidth={620}
+              label="AI activity log: questions the agent answered, and chats it handed to a person because of a refund rule, a health topic or low confidence."
+            >
+              <AiActivityCard />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            Refund requests, health questions and anything the agent is unsure about go to a person. The activity log
+            shows what it did with each message and why, so you can fix gaps in the knowledge.
+          </p>
+        </HighlightRow>
+        <HighlightRow
+          id="hl-assistant"
+          eyebrow="Assistant for the team"
+          heading="Summaries, intent and lead scores in the inbox"
+          visual={
+            <ScreenVisual designWidth={380} label="KHAGA summary of a chat with intent, lead score, next step and a suggested reply." className="mx-auto max-w-md">
+              <AiSummaryCard />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            When a person takes over, KHAGA has already summarised the chat, labelled the intent, scored the lead and
+            drafted a reply they can edit before sending.
+          </p>
+        </HighlightRow>
+      </Highlights>
+
       <CopySection id="problem" eyebrow="The problem" heading="Customers write when your team is offline">
         <p>
-          A good share of WhatsApp messages arrive in the evening, late at night and on Sundays, which is when people
-          finally have time to ask. By the time your team replies the next morning, many of those customers have bought
-          elsewhere or lost interest.
+          A good share of WhatsApp and Instagram messages arrive in the evening, late at night and on Sundays, which is
+          when people finally have time to ask. By the time your team replies the next morning, many of those customers
+          have bought elsewhere or lost interest.
         </p>
         <p>
           A fixed chatbot helps with questions you predicted, but customers rarely ask in the words you expected. They
@@ -64,23 +140,23 @@ export default function Page() {
         </p>
       </CopySection>
 
-      <CopySection
-        id="how-it-works"
-        eyebrow="How it works"
-        heading="Your knowledge, your rules, a person close by"
-        aside={<AiActivityLogMockup />}
-      >
+      <CopySection id="how-it-works" eyebrow="How it works" heading="Your knowledge, your rules, a person close by" tone="sunken">
+        <h3>One agent per job</h3>
+        <p>
+          Create several agents, each with its own role, tone, channels and working hours. A wellness guide answers
+          product questions on Instagram, an order helper handles delivery questions on WhatsApp, and a booking desk
+          fills appointment slots.
+        </p>
         <h3>Give it your knowledge</h3>
         <p>
-          Point the AI agent at your website, upload documents such as a price list or policy, and add FAQs in your own
-          words. This becomes its knowledge base. When a customer writes, the agent answers from that material, 24 hours
-          a day, every day of the week.
+          Point the agent at your website, upload documents such as a price list or policy, and add FAQs in your own
+          words. When a customer writes, the agent answers from that material, 24 hours a day, every day of the week.
         </p>
         <h3>Set the rules</h3>
         <p>
-          You decide how it behaves. Describe the tone you want, friendly and short or formal and detailed. Add handoff
-          keywords that always bring in a person. Set a confidence threshold, so the agent only replies when it is sure
-          enough, and a maximum number of turns, so long back-and-forths go to your team.
+          Describe the tone you want, friendly and short or formal and detailed. Add handoff rules that always bring in a
+          person, and set a confidence limit so the agent only replies when it is sure enough. Test it in the playground
+          before it goes live.
         </p>
         <h3>Safe by design</h3>
         <p>
@@ -90,31 +166,29 @@ export default function Page() {
         </p>
         <h3>See every decision</h3>
         <p>
-          The activity log records each decision the agent made: when it answered, when it handed off and why. If an
-          answer was not right, you can find the chat and improve the knowledge base. Usage
-          tracking shows how much the agent is being used.
+          The activity log records what the agent did with each message: replied, handed off, skipped or failed, and
+          why. Unanswered questions are collected in one place, so you know exactly what to add to the knowledge next.
         </p>
-        <h3>An assistant for your team too</h3>
+        <h3>More than replies</h3>
         <p>
-          The same AI helps your people in the inbox. It writes a short summary of a long chat, suggests a reply your
-          agent can edit before sending, and labels the customer&apos;s intent. Lead scoring helps sales see which
-          conversations are most likely to turn into orders.
+          The same AI helps your people in the inbox with summaries, suggested replies, intent and lead scores. It can
+          also draft WhatsApp templates and generate a first version of a chatbot flow from a short description.
         </p>
       </CopySection>
 
       <CopySection id="who-its-for" eyebrow="Who it is for" heading="For businesses that get questions around the clock">
         <p>
-          The WhatsApp AI agent suits businesses whose customers ask a wide range of questions that already have
-          answers somewhere: on the website, in a brochure, in a policy document. An online store handles questions on
-          sizes, delivery times and returns at midnight. A clinic answers timings, fees and preparation for tests, and
-          hands anything medical to staff. A coaching institute explains courses, fees and batch timings. A travel or
-          real estate business answers first questions and passes serious leads to a person with a summary.
+          KHAGA AI agents suit businesses whose customers ask a wide range of questions that already have answers
+          somewhere: on the website, in a brochure, in a policy document. An online store handles questions on sizes,
+          delivery times and returns at midnight. A clinic answers timings, fees and preparation for tests, and hands
+          anything medical to staff. A coaching institute explains courses, fees and batch timings. A travel or real
+          estate business answers first questions and passes serious leads to a person with a summary.
         </p>
         <p>
-          The best results come from a clear, current knowledge base. Before you switch it on, write down the twenty
-          questions your team answers most often and the answers you would want given. In the first week, read the activity log
-          closely and fill any gaps you find in the knowledge base. Raise the confidence threshold if you want the agent
-          to hand off more often, and lower it once you trust its answers.
+          The best results come from clear, current knowledge. Before you switch it on, write down the twenty questions
+          your team answers most often and the answers you would want given. In the first week, read the activity log
+          closely and fill any gaps you find. Raise the confidence limit if you want the agent to hand off more often,
+          and lower it once you trust its answers.
         </p>
       </CopySection>
     </PillarPage>

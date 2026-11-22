@@ -18,7 +18,7 @@ type SectionProps = {
   className?: string;
 };
 
-const toneClass = { default: "", surface: "bg-surface", sunken: "bg-sunken" } as const;
+const toneClass = { default: "", surface: "bg-card", sunken: "bg-muted" } as const;
 const spacingClass = { default: "py-16 md:py-24", tight: "py-10 md:py-16", none: "" } as const;
 
 export function Section({
@@ -35,7 +35,7 @@ export function Section({
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={cx(toneClass[tone], spacingClass[spacing], divider && "border-t border-line", className)}
+      className={cx(toneClass[tone], spacingClass[spacing], divider && "border-t border-border", className)}
     >
       {contained ? <Container>{children}</Container> : children}
     </section>

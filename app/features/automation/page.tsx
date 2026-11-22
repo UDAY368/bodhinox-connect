@@ -1,6 +1,14 @@
 import Link from "next/link";
-import { CopySection, PillarPage } from "@/components/features/PillarPage";
-import { FlowBuilderMockup, OptOutMockup } from "@/components/features/PillarMockups";
+import {
+  CopySection,
+  HeroScreen,
+  HighlightRow,
+  Highlights,
+  PillarPage,
+  ScreenVisual,
+} from "@/components/features/PillarPage";
+import { AutomationScreen, RulesListCard } from "@/components/product/screens/AutomationScreen";
+import { FlowBuilderScreen, FlowCanvasCard } from "@/components/product/screens/FlowBuilderScreen";
 import { getFeature } from "@/content/features";
 import type { Faq } from "@/content/faqs";
 import { pageMetadata } from "@/lib/seo";
@@ -13,26 +21,33 @@ export const metadata = pageMetadata({
   path: feature.href,
 });
 
+const linkClass = "text-primary underline underline-offset-4 hover:text-primary-hover";
+
 const faqs: Faq[] = [
   {
     question: "Do I need to know coding to build a WhatsApp chatbot?",
     answer:
-      "No. You build flows in a visual builder by adding steps such as a message, a question, buttons or a condition, and joining them. You can test a flow with a dry run before customers see it.",
+      "No. You build flows on a visual canvas by adding steps such as a message, a question, buttons or a condition, and joining them. You can start from a starter flow and test it with a dry run before customers see it.",
   },
   {
-    question: "What is the difference between a flow and an automation?",
+    question: "What is the difference between a flow, a rule and a sequence?",
     answer:
-      "A flow is a conversation: a series of messages, questions and choices the customer moves through. An automation is a rule that runs when something happens, such as a keyword, a new tag, a status change or a time of day. When it runs, it can take steps for you, for example tagging the contact or assigning the chat.",
+      "A flow is a conversation: a series of messages, questions and choices the customer moves through. A rule runs when something happens, such as a keyword, a new tag or an order, and takes a step for you, for example tagging the contact or assigning the chat. A sequence sends a series of messages over days, such as a welcome series.",
   },
   {
-    question: "What are WhatsApp Forms?",
+    question: "Do flows work on Instagram too?",
     answer:
-      "WhatsApp Forms use Meta Flows to show a form with one or more screens inside the chat, for example a booking or a lead form. The customer fills it in without leaving WhatsApp, and the answers are saved to their contact record.",
+      "Yes. Flows, rules and sequences can run on WhatsApp and Instagram, and an Instagram comment on a post or reel can trigger a flow. The automation list has a channel filter so you can see each channel's automations on their own.",
+  },
+  {
+    question: "Can a flow take a payment or book an appointment?",
+    answer:
+      "Yes. Flow steps can send a Razorpay payment link, share your store link, open a WhatsApp Form, book an appointment, call your own system with an API request, let a KHAGA AI agent reply, or hand the chat to a person.",
   },
   {
     question: "What happens when a customer replies STOP?",
     answer:
-      "The contact is marked as opted out. Campaigns and automations skip them from then on, and the same applies to contacts you block. If the customer writes to you again, the message still reaches your inbox.",
+      "The contact is marked as opted out. Campaigns and automations skip them from then on. If the customer writes to you again, the message still reaches your inbox.",
   },
 ];
 
@@ -40,13 +55,75 @@ export default function Page() {
   return (
     <PillarPage
       feature={feature}
-      h1="WhatsApp chatbot flows and automation"
-      lead="Build WhatsApp chatbot flows in a visual builder, test them before they go live, and let automations handle the routine work: tagging, routing, reminders and follow-ups."
-      heroVisual={<FlowBuilderMockup />}
+      h1="Build WhatsApp chatbot flows on a visual canvas"
+      lead="Design WhatsApp and Instagram chatbot flows by dragging steps, test them with a dry run, publish a version and let rules and sequences handle the routine work: tagging, routing, reminders and follow-ups."
+      heroVisual={
+        <HeroScreen label="The visual flow builder with a step palette, a flow from a reel comment trigger through buttons, a condition, an AI reply and a payment link, and the step settings panel.">
+          <FlowBuilderScreen height={760} />
+        </HeroScreen>
+      }
       bulletsHeading="Everything in flows and automation"
       faqs={faqs}
-      related={["ai-agent", "team-inbox", "commerce"]}
+      related={["ai-agent", "instagram", "whatsapp-forms"]}
     >
+      <Highlights label="Automation highlights">
+        <HighlightRow
+          id="hl-steps"
+          eyebrow="Steps that do real work"
+          heading="Buttons, conditions, AI, payments and handoff"
+          visual={
+            <ScreenVisual
+              designWidth={720}
+              label="A chatbot flow on the visual canvas: keyword trigger, message with buttons, payment link, AI reply and assignment to a person."
+            >
+              <FlowCanvasCard />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            A flow can do more than answer. Send a payment link, share the store, open a form, book a slot, call your own
+            system with an API request, let the AI agent reply, or pass the chat to the right person.
+          </p>
+        </HighlightRow>
+        <HighlightRow
+          flip
+          id="hl-list"
+          eyebrow="One list"
+          heading="Flows, rules and sequences, with runs and results"
+          visual={
+            <ScreenVisual
+              designWidth={1280}
+              label="Automation list with flows, rules and sequences, their channel, trigger, runs, click-through rate and a live switch."
+            >
+              <AutomationScreen height={720} />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            Every automation sits in one list with its channel, trigger, runs and click-through rate. Filter by WhatsApp
+            or Instagram, and switch any of them off without deleting it.
+          </p>
+        </HighlightRow>
+        <HighlightRow
+          id="hl-basics"
+          eyebrow="Always-on basics"
+          heading="Default replies and menus in minutes"
+          visual={
+            <ScreenVisual
+              designWidth={640}
+              label="Basics: default reply, conversation starters, main menu, story mention reply and away message, each with an on or off switch."
+            >
+              <RulesListCard />
+            </ScreenVisual>
+          }
+        >
+          <p>
+            Before you build anything, switch on the basics: a default reply, conversation starters, a main menu and a
+            reply to story mentions. They cover most first messages on day one.
+          </p>
+        </HighlightRow>
+      </Highlights>
+
       <CopySection id="problem" eyebrow="The problem" heading="Your team answers the same questions all day">
         <p>
           Look at a day of WhatsApp chats in most businesses and the pattern is clear. Where is my order. What are your
@@ -65,18 +142,18 @@ export default function Page() {
         </p>
       </CopySection>
 
-      <CopySection
-        id="how-it-works"
-        eyebrow="How it works"
-        heading="Build visually, test first, check every run"
-        aside={<OptOutMockup />}
-      >
+      <CopySection id="how-it-works" eyebrow="How it works" heading="Build visually, test first, check every run" tone="sunken">
         <h3>The visual flow builder</h3>
         <p>
           A flow is a conversation you design once. Add steps for messages, buttons, lists and questions, then use
-          conditions to send people down different paths based on their answers. Add delays between steps, tag the
-          contact, assign the chat to a person or team, collect a payment, or book an appointment, all from inside the
-          flow.
+          conditions to send people down different paths based on their answers. Add waits between steps, save answers as
+          contact attributes, collect a payment, open a WhatsApp Form or book an appointment, all from inside the flow.
+          Begin from a starter flow if you would rather not start from a blank canvas.
+        </p>
+        <h3>Triggers for every way a chat starts</h3>
+        <p>
+          A flow can start on a keyword or a pattern, a template button, a customer&apos;s first message, a new contact, a
+          tag being added, an order being received, or a comment on your Instagram post or reel.
         </p>
         <h3>Publish with confidence</h3>
         <p>
@@ -84,22 +161,16 @@ export default function Page() {
           walks through the flow without messaging anyone. After it is live, you can inspect any single run to see which
           steps a customer went through, and replay a run when you need to.
         </p>
-        <h3>Automations that run on their own</h3>
+        <h3>Rules and sequences</h3>
         <p>
-          Automations are rules. They start on an event, a keyword the customer sends, a tag being added, a change in
-          chat status, or a schedule. Add waits and conditions in between. For example: when a lead is tagged
-          interested, wait one day, and if they have not replied, assign the chat to sales.
-        </p>
-        <h3>WhatsApp Forms</h3>
-        <p>
-          For anything that needs several answers at once, such as an enquiry form, a booking request or a feedback
-          survey, use WhatsApp Forms built on Meta Flows. The customer moves through one or more screens inside the chat,
-          and every answer is saved to their contact record where your team and your automations can use it.
+          Rules run on their own when something happens. For example: when a lead is tagged interested, assign the chat to
+          sales. Sequences send a series of messages over days, such as a welcome series after the first order. Both work
+          on WhatsApp and Instagram.
         </p>
         <h3>Opt-out respected everywhere</h3>
         <p>
-          When a customer replies STOP, they are opted out, and every campaign and automation skips them from then on.
-          Contacts you block are treated the same way. You do not have to remember to remove them from each list.
+          When a customer replies STOP, they are opted out, and every campaign and automation skips them from then on. You
+          do not have to remember to remove them from each list.
         </p>
       </CopySection>
 
@@ -113,9 +184,13 @@ export default function Page() {
         </p>
         <p>
           Start small. Automate the one question your team answers most, watch the runs for a week, then add the next.
-          For questions that do not fit a fixed path, pair flows with the{" "}
-          <Link href="/features/ai-agent" className="text-copper underline underline-offset-4 hover:text-copper-hover">
-            AI agent
+          For questions that do not fit a fixed path, pair flows with{" "}
+          <Link href="/features/ai-agent" className={linkClass}>
+            KHAGA AI agents
+          </Link>
+          , collect several answers at once with{" "}
+          <Link href="/features/whatsapp-forms" className={linkClass}>
+            WhatsApp Forms
           </Link>
           , and keep a person one tap away in the shared inbox.
         </p>

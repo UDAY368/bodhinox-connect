@@ -1,26 +1,21 @@
-import { Bricolage_Grotesque, Figtree, JetBrains_Mono } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 
-/** Display face: headlines only. Variable, so tight tracking at large sizes stays crisp. */
-export const fontDisplay = Bricolage_Grotesque({
+/**
+ * Same type as the CRM: the system face first (San Francisco on Apple
+ * devices), Inter everywhere else. Headings and body share one family.
+ */
+export const fontSans = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-bricolage",
-  axes: ["opsz"],
+  variable: "--font-inter",
 });
 
-/** Body and UI face. */
-export const fontBody = Figtree({
+/** Code samples on the developer page and the odd mono label. */
+export const fontMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-figtree",
-});
-
-/** Utility face: timestamps, ticks, prices in mock-ups, plan limits. */
-export const fontMono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-jetbrains",
+  variable: "--font-geist-mono",
   weight: ["400", "500"],
 });
 
-export const fontVariables = [fontDisplay.variable, fontBody.variable, fontMono.variable].join(" ");
+export const fontVariables = [fontSans.variable, fontMono.variable].join(" ");

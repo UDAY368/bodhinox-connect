@@ -47,8 +47,8 @@ export function GuideLayout({ guide, toc, related, children }: GuideLayoutProps)
         <header className="mt-10 max-w-3xl">
           <Eyebrow>Guide</Eyebrow>
           <h1 className="mt-3 text-hero">{guide.title}</h1>
-          <p className="mt-5 text-lead text-muted">{guide.description}</p>
-          <p className="mt-6 font-mono text-micro text-muted">
+          <p className="mt-5 text-lead text-muted-foreground">{guide.description}</p>
+          <p className="mt-6 text-micro text-muted-foreground">
             By the {site.name} team · Published <time dateTime={guide.datePublished}>{formatGuideDate(guide.datePublished)}</time>
             {modified ? (
               <>
@@ -60,15 +60,15 @@ export function GuideLayout({ guide, toc, related, children }: GuideLayoutProps)
           </p>
         </header>
 
-        <div className="mt-12 grid gap-10 border-t border-line pt-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16">
+        <div className="mt-12 grid gap-10 border-t border-border pt-10 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-16">
           <nav aria-labelledby={tocId} className="lg:sticky lg:top-24 lg:self-start">
-            <h2 id={tocId} className="font-mono text-micro font-medium tracking-[0.08em] text-muted uppercase">
+            <h2 id={tocId} className="text-micro font-semibold tracking-[0.04em] text-muted-foreground uppercase">
               On this page
             </h2>
-            <ol className="mt-4 space-y-2.5 border-l border-line pl-4 text-small">
+            <ol className="mt-4 space-y-2.5 border-l border-border pl-4 text-small">
               {toc.map((item) => (
                 <li key={item.id}>
-                  <a href={`#${item.id}`} className="text-ink underline-offset-4 hover:text-copper hover:underline">
+                  <a href={`#${item.id}`} className="text-foreground underline-offset-4 hover:text-primary hover:underline">
                     {item.title}
                   </a>
                 </li>
@@ -79,11 +79,11 @@ export function GuideLayout({ guide, toc, related, children }: GuideLayoutProps)
           <div className="min-w-0">
             <Prose as="article">{children}</Prose>
 
-            <aside aria-labelledby={`related-${guide.slug}`} className="mt-16 max-w-reading border-t border-line pt-10">
+            <aside aria-labelledby={`related-${guide.slug}`} className="mt-16 max-w-reading border-t border-border pt-10">
               <h2 id={`related-${guide.slug}`} className="text-h3">
                 Where this happens in {site.name}
               </h2>
-              <ul className="mt-6 divide-y divide-line border-y border-line">
+              <ul className="mt-6 divide-y divide-border border-y border-border">
                 {related.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -91,10 +91,10 @@ export function GuideLayout({ guide, toc, related, children }: GuideLayoutProps)
                       className="group flex items-start justify-between gap-4 py-4 underline-offset-4"
                     >
                       <span>
-                        <span className="block font-semibold text-ink group-hover:underline">{link.label}</span>
-                        <span className="mt-0.5 block text-small text-muted">{link.note}</span>
+                        <span className="block font-semibold text-foreground group-hover:underline">{link.label}</span>
+                        <span className="mt-0.5 block text-small text-muted-foreground">{link.note}</span>
                       </span>
-                      <ArrowRight size={18} aria-hidden className="mt-1 shrink-0 text-copper" />
+                      <ArrowRight size={18} aria-hidden className="mt-1 shrink-0 text-primary" />
                     </Link>
                   </li>
                 ))}

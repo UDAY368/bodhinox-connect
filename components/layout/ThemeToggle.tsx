@@ -45,7 +45,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${next} theme`}
-      className={`inline-flex size-11 items-center justify-center rounded-control text-muted transition-colors duration-200 hover:bg-sunken hover:text-ink ${className}`}
+      className={`inline-flex size-11 items-center justify-center rounded-control text-muted-foreground transition-colors duration-200 hover:bg-muted hover:text-foreground ${className}`}
     >
       {/* Both icons render; CSS shows the right one before hydration too. */}
       <Sun size={18} aria-hidden className="theme-icon-sun" />

@@ -28,13 +28,14 @@ type NativeButtonProps = CommonProps &
 export type ButtonProps = LinkButtonProps | NativeButtonProps;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-control font-sans font-semibold whitespace-nowrap " +
-  "transition-colors duration-200 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-full font-sans font-medium whitespace-nowrap " +
+  "transition-[background-color,border-color,color,transform] duration-150 ease-studio active:translate-y-px " +
+  "disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-copper text-on-copper hover:bg-copper-hover",
-  secondary: "border border-line-strong bg-surface text-ink hover:border-ink",
-  ghost: "text-ink hover:bg-sunken",
+  primary: "bg-primary text-primary-foreground hover:bg-primary-hover",
+  secondary: "border border-border bg-card text-foreground shadow-[0_1px_2px_#0000000a] hover:bg-accent",
+  ghost: "text-foreground hover:bg-accent",
 };
 
 // md and lg meet the 44px target; sm (36px) is only for dense rows inside mock-ups.
